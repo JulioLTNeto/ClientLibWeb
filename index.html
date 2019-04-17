@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="UTF-8">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>ClientLib</title>
+
+		<link rel="shortcut icon" href="img/shortcun.png" />
+		<link rel="stylesheet" type="text/css" href="css/style_base.css" />
+        <script src="js/script_base.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.11.0.js" integrity="sha256-zgND4db0iXaO7v4CLBIYHGoIIudWI5hRMQrPB20j0Qw=" crossorigin="anonymous"></script>
+        <script>
+        // JavaScript Document
+			$(document).ready(function(){
+
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(window).scrollTop() > 150) {
+            $('.scrollToTop').fadeIn();
+			$('#cima').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+			$('#cima').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+	
+	$('#arduinoScroll').click(function(){
+		$('html, body').animate({scrollTop : $("#arduino").offset().top},1500);	
+	});
+	
+	$('#cScroll').click(function(){
+		$('html, body').animate({scrollTop : $("#c").offset().top},1500);	
+	});
+
+});
+        </script>
+
+	</head>
+
+	<body class="body">
+
+		<div id="tudo">
+    		<div id="topoIn">
+
+            	<div id="juntaIn" class="center" align="center">
+                	<a href="#">
+                		<div id="logo-In">
+                    		<img src="img/primefaces-logo.png" id="lgIn" class="img" />
+                		</div>
+                    </a>
+                	<div id="menu-topo-In" class="menu-top-dow">
+                        	<b><li class="itemIn">HOME</li>
+                            <li class="itemIn">CLIENTLIB</li>
+                            <li class="itemIn">DOCUMENTAÇÃO</li>
+                            <li class="itemIn">TUTORIAIS</li>
+                            <li class="itemIn">DESENVOLVEDORES</li></b>
+                    </div>
+                </div>
+            </div>
+            <div id="cima">
+
+            	<div id="junta" class="center" align="center">
+                	<a href="#">
+                		<div id="logo">
+                    		<img src="img/primefaces-logo.png" id="lg" class="img" />
+                		</div>
+                    </a>
+                	<div id="menu-topo" class="menu-top-dow">
+                        	<b><li class="menu_item item">HOME</li>
+                            <li class="menu_item item">CLIENTLIB</li>
+                            <li class="menu_item item">DOCUMENTAÇÃO</li>
+                            <li class="menu_item item">TUTORIAIS</li>
+                            <li class="menu_item item">DESENVOLVEDORES</li></b>
+                    </div>
+                </div>
+            </div>
+            <center>
+                <div id="topo">
+                    <img src="img/logo2.png" />
+                    <b>
+                        <a href="#" class="botao-normal botao">Exemplos</a>
+                        <a href="#" class="botao-cor botao" id="arduinoScroll">Arduino</a>
+                        <a href="#" class="botao-normal botao" id="cScroll">C/C++</a>
+                   </b>
+                </div>
+            </center>
+            </div>
+            <div id="conteudo">
+            	<div id="arduino">
+                	<center>
+            			<div class="logo">
+                        	<img src="img/arduino.png" />
+                    	</div>
+                        <div class="texto">
+                        	<b>Arduino</b><br/><br/>
+                            	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label><br/><br/><a href="#">Ler Mais...</a>
+                        </div>
+                    </center>
+                </div>
+                <div id="c">
+                	<center>
+                    	<div class="texto">
+                      		<b>Arduino</b><br/><br/>
+                            	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label><br/><br/><a href="#">Ler Mais...</a>
+
+                        </div>
+                		<div class="logo">
+                        	<img src="img/c.png" />
+                    	</div>
+                    </center>
+                </div>
+            </div>
+            <div id="rodape">
+            </div>	
+           <b><a href="#" class="scrollToTop">&uarr;</a></b>
+    	</div>
+	</body>
+</html>
