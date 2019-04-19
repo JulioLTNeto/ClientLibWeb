@@ -140,7 +140,7 @@ img{
 	width:100%;
 	height:auto;
 	min-height:500px;
-	background:no-repeat fixed url(../img/img4-bg.jpg) 100% 100%;
+	background:no-repeat url(../img/img4-bg.jpg) fixed 100% 100%;
 	box-shadow:0px 0px 5px #000;
 	padding-top:120px;
 	z-index:2;
@@ -180,6 +180,66 @@ img{
 .logo img{
 	width:100%;
 	height:auto;
+}
+
+#aprt{
+	width:100%;
+	height:auto;
+	min-height:100px;
+	padding-top:0px;
+	box-shadow:0px 0px 5px #000;
+	padding-bottom:50px;
+	background:#f3f3f3;
+}
+
+#aprt label{
+	display:block;
+	width:100%;
+	padding-top:0px;
+	padding-bottom:5px;
+	font-size:30px;
+}
+
+.titulo{
+	background:url(../img/bg1-2-2.png) 100% 100%;
+	box-shadow:0px 0px 5px #000;
+}
+
+.titulo .bg{
+	width:100%;
+	height:100%;
+	padding-top:30px !important;
+	padding-bottom:20px !important;
+	display:block;
+	max-width:100%;
+	color:#333;
+	box-shadow:inset 5px 0px 10px #000;
+	box-shadow:inset -5px 0px 10px #000;
+	background:rgba(250,250,250,0);
+}
+
+.texto-left, .texto-right{
+	max-width:500px !important;
+	width:90% !important;
+}
+
+#aprt .texto label{
+	width:100%;
+	padding-left:0px !important;
+	padding-right:0px !important;
+	padding:10px 10px;
+}
+
+.texto-left{
+	text-align:left !important;
+}
+
+.texto-right{
+	text-align:right !important;
+}
+
+#aprt img{
+	width:200px;
 }
 
 #arduino{
@@ -250,6 +310,21 @@ img{
 	height:30px;
 	color:#999;
 }
+
+#aprt .texto label{
+	font-size: 18px;
+	color:#666;
+	margin-top:15px;
+
+}
+
+#aprt b{
+	color:#333;
+}
+
+#aprt .texto{
+	text-align:right;
+	}
 
 @keyframes all{
 	0%{
