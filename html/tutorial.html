@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="UTF-8">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>ClientLib</title>
+
+		<link rel="shortcut icon" href="../img/shortcun.png" />
+		<link rel="stylesheet" type="text/css" href="../css/style_base.css" />
+        <link rel="stylesheet" type="text/css" href="../css/style-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="../css/style_sub.css" />
+        <script src="js/script_base.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.11.0.js" integrity="sha256-zgND4db0iXaO7v4CLBIYHGoIIudWI5hRMQrPB20j0Qw=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+        <script>
+        // JavaScript Document
+		var contador = 1;
+		var contador2 = 1;
+		var contador3 = 1;
+
+$(document).ready(function(){
+
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(window).scrollTop() > 150) {
+            $('.scrollToTop').fadeIn();
+			$('#cima').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+			$('#cima').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+	
+	$('#arduinoScroll').click(function(){
+		$('html, body').animate({scrollTop : $("#arduino").offset().top},1500);	
+	});
+	
+	
+	$('#cScroll').click(function(){
+		$('html, body').animate({scrollTop : $("#c").offset().top},1500);	
+	});
+	
+	$('#mh1').click(function(){
+		if(contador == 1){
+			$("#menu-topo-In").css("display", "block");
+			contador = 0;
+		}else{
+			$("#menu-topo-In").css("display", "none");
+			contador = 1;
+			}
+	});
+	
+	$('#mh2').click(function(){
+		if(contador2 == 1){
+			$("#menu-topo").css("margin-left", "0px");
+			$("#menu-topo").css("opacity", "1");
+			contador2 = 0;
+		}else{
+			$("#menu-topo").css("margin-left", "100%");
+			$("#menu-topo").css("opacity", "0");
+			contador2 = 1;
+			}
+	});
+	
+	$(function () {
+                $.get("aa.txt", function (data) {
+                    $("#rodape").append(data);
+                });
+            });
+			
+	$("#ardClk").click(function(){
+		$(function() {
+                $.get("../txt/tutorialArduino.txt", function (data) {
+                    $("#conteudo-lado").html(data);
+                });
+            });
+	});
+	
+	$("#cClk").click(function(){
+		$(function() {
+                $.get("../txt/tutorialC.txt", function (data) {
+                    $("#conteudo-lado").html(data);
+                });
+            });
+	});
+	
+	$("#winClk").click(function(){
+		$(function() {
+                $.get("../txt/tutorialWindows.txt", function (data) {
+                    $("#conteudo-lado").html(data);
+                });
+            });
+	});
+	
+	$("#linClk").click(function(){
+		$(function() {
+                $.get("../txt/tutorialLM.txt", function (data) {
+                    $("#conteudo-lado").html(data);
+                });
+            });
+	});
+	
+	$("#contClk").click(function(){
+		$(function() {
+                $.get("../txt/tutorialCont.txt", function (data) {
+                    $("#conteudo-lado").html(data);
+                });
+            });
+	});
+	
+	$("#criarClk").click(function(){
+		$(function() {
+                $.get("../txt/tutorialCriar.txt", function (data) {
+                    $("#conteudo-lado").html(data);
+                });
+            });
+	});
+	
+	$("#abrir-menu").click(function(){
+		if(contador3 == 1){
+			contador3=0;
+			var tamanho = $(document).width();
+			if((tamanho >= 550) && (tamanho <= 610)){
+				$("#ul-sub").css("height", 100);
+			}
+			else if(tamanho < 550){
+				$("#ul-sub").css("height", 190);
+			}
+			else{
+				$("#ul-sub").css("height", 55);
+			}
+			$("#ul-sub").css("opacity", 1);
+		}
+		else{
+			contador3=1;
+			$("#ul-sub").css("height", "0");
+			$("#ul-sub").css("opacity", 0);
+			}
+	});
+
+});	
+
+	
+        </script>
+
+	</head>
+
+	<body class="body">
+
+		<div id="tudo">
+    		<div id="topoIn">
+
+            	<div id="juntaIn" class="center" align="center">
+                	<a href="#">
+                		<div id="logo-In">
+                    		<img src="../img/primefaces-logo.png" id="lgIn" class="img" />
+                            <img src="../img/ci-stylized-logo.png" class="logo-hidden"  />
+                		</div>
+                    </a>
+                    <div class="menu-hidden" id="mh1">&equiv;</div>
+                	<div id="menu-topo-In" class="menu-top-down">
+                    		<ul>
+                                <b><a href="../index.html"><li class="itemIn">HOME</li></a>
+                                <li class="itemIn">DOWNLOADS</li>
+                                <li class="itemIn">DOCUMENTAÇÃO</li>
+                                <a href="tutorial.html"><li class="itemIn">TUTORIAIS</li></a>
+                                <li class="itemIn">DESENVOLVEDORES</li></b>
+                            </ul>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="cima">
+
+            	<div id="junta" class="center" align="center">
+                	<a href="#">
+                		<div id="logo">
+                    		<img src="../img/primefaces-logo.png" id="lg" class="img" />
+                            <img src="../img/ci-stylized-logo.png" class="logo-hidden"  />
+                		</div>
+                    </a>
+                    <div class="menu-hidden" id="mh2">&equiv;</div>
+                	<div id="menu-topo" class="menu-top-dow">
+                        	<b><a href="../index.html"><li class="menu_item item">HOME</li></a>
+                            <li class="menu_item item">DOWNLOADS</li>
+                            <li class="menu_item item">DOCUMENTAÇÃO</li>
+                            <a href="tutorial.html"><li class="menu_item item">TUTORIAIS</li></a>
+                            <li class="menu_item item">DESENVOLVEDORES</li></b>
+                    </div>
+                </div>
+            </div>
+                
+            <div id="conteudo">
+            	<center>
+                    <div id="sub-menu">
+                        <ul id="ul-top">
+                            <li id="abrir-menu">
+                                <b>Instalação e configurações</b>
+                            </li>
+                            <li id="#contClk">
+                                <b>ContextNet</b>
+                            </li>
+                            <li id="criarClk">
+                                <b>Criando um projeto simples</b>
+                            </li>
+                        </ul>
+                        <ul id="ul-sub">
+                            <li id="ardClk">Arduino</li>
+                            <li id="cClk">C/C++</li>
+                            <li id="winClk">Windows</li>
+                            <li id="linClk">Linux/Mac</li>
+                        </ul>
+                    </div>
+                    <div id="conteudo-lado"></div>
+               </center>
+            </div>
+            <div id="rodape">
+            </div>	
+           <b><a href="#" class="scrollToTop">&uarr;</a></b>
+    	</div>
+	</body>
+</html>

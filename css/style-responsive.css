@@ -21,7 +21,6 @@
 		padding-left:0px;
 		padding-right:0px;
 	}
-	
 	#arduino{
 		background: #222 no-repeat url(../img/bg-fc1.png) 100% 100%;
 		background-size:100% 100%;
@@ -157,6 +156,26 @@
 	}
 	.botao{
 		margin-top:10px;
+	}
+}
+
+@media(max-width: 610px){
+	#sub-menu ul li{
+		width:100% !important;
+		max-width:none;
+		border-left:none;
+		border-right:none;
+		border-bottom:1px solid rgba(0,0,0,0);
+	}
+	
+	#sub-menu #ul-sub{
+		border-bottom: 1px solid #000;
+	}
+	
+	#sub-menu ul li:hover{
+		border-left:0px solid #000;
+		border-right:0px solid #000;
+		border-bottom:1px solid #000;
 	}
 }
 

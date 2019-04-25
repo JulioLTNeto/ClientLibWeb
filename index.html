@@ -9,6 +9,9 @@
         <link rel="stylesheet" type="text/css" href="css/style-responsive.css" />
         <script src="js/script_base.js" type="text/javascript"></script>
         <script src="https://code.jquery.com/jquery-1.11.0.js" integrity="sha256-zgND4db0iXaO7v4CLBIYHGoIIudWI5hRMQrPB20j0Qw=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
         <script>
         // JavaScript Document
 		var contador = 1;
@@ -52,18 +55,27 @@
 	});
 	
 	$('#mh2').click(function(){
-		if(contador == 1){
+		if(contador2 == 1){
 			$("#menu-topo").css("margin-left", "0px");
 			$("#menu-topo").css("opacity", "1");
-			contador = 0;
+			contador2 = 0;
 		}else{
 			$("#menu-topo").css("margin-left", "100%");
 			$("#menu-topo").css("opacity", "0");
-			contador = 1;
+			contador2 = 1;
 			}
 	});
-
+	
+	$(function () {
+                $.get("aa.txt", function (data) {
+                    $("#rodape").append(data);
+                });
+            });
+	
 });	
+
+	
+
         </script>
 
 	</head>
@@ -86,7 +98,7 @@
                                 <b><li class="itemIn">HOME</li>
                                 <li class="itemIn">DOWNLOADS</li>
                                 <li class="itemIn">DOCUMENTAÇÃO</li>
-                                <li class="itemIn">TUTORIAIS</li>
+                                <a href="html/tutorial.html"><li class="itemIn">TUTORIAIS</li></a>
                                 <li class="itemIn">DESENVOLVEDORES</li></b>
                             </ul>
                     </div>
@@ -107,7 +119,7 @@
                         	<b><li class="menu_item item">HOME</li>
                             <li class="menu_item item">DOWNLOADS</li>
                             <li class="menu_item item">DOCUMENTAÇÃO</li>
-                            <li class="menu_item item">TUTORIAIS</li>
+                            <a href="html/tutorial.html"><li class="menu_item item">TUTORIAIS</li></a>
                             <li class="menu_item item">DESENVOLVEDORES</li></b>
                     </div>
                 </div>
@@ -116,7 +128,7 @@
                 <div id="topo">
                     <img src="img/logo2.png" />
                     <b>
-                        <a href="#" class="botao-normal botao">Exemplos</a>
+                        <a href="#" class="botao-normal botao" onclick="funcao">Exemplos</a>
                         <a href="#" class="botao-cor botao" id="arduinoScroll">Arduino</a>
                         <a href="#" class="botao-normal botao" id="cScroll">C/C++</a>
                    </b>
@@ -134,7 +146,7 @@
                                 <a class="botao botao-normal">Ler Mais...</a>
                         </div>
                          <div class="texto-right texto">
-                         		<h1>-LoT-</h1>
+                         		<h1>-IoT-</h1>
                             	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label>
                                 <a class="botao botao-cor">Ler Mais...</a>
                         </div>

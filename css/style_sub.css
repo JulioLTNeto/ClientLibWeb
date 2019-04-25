@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+#conteudo{
+	min-height:0px !important;
+}
+
+#conteudo-lado{
+	width:100%;
+	max-width:1000px;
+	height:auto;
+	padding:10px 20px;
+}
+
+#sub-menu{
+	width:100%;
+	height:auto;
+	list-style-type:none;
+	min-height:50px;
+	background:url(../img/bg1-2-2.png);
+	background-size:100% auto;
+}
+
+#sub-menu #ul-top{
+	width:100%;
+	border-bottom:1px solid #000;
+	height:auto;
+	list-style:none;
+}
+
+#sub-menu b{
+	font-size:16px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+#sub-menu ul li{
+	display:inline-block;
+	height:auto;
+	color:#333;
+	width:auto;
+	border-left:1px solid rgba(255,255,255,0);
+	border-right:1px solid rgba(255,255,255,0);
+	font-size:16px;
+	margin-left:0px;
+	margin-right:0px;
+	cursor:pointer;
+	padding: 15px 20px;
+}
+
+#sub-menu ul li:hover{
+	background:rgba(0,0,0,0.1);
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+}
+
+#sub-menu #ul-sub{
+	width: 100%;
+	transition:all 0.5s ease-in-out;
+	height:auto;
+	opacity:0;
+	overflow:hidden;
+	height:0px;
+	box-shadow:inset 0px 5px 5px #000;
+}
+
+#sub-menu ul #abrir-menu:hover{
+	background:rgba(0,0,0,0);
+}
+
+#sub-menu #ul-sub li{
+	display:inline-block;
+	width:200px;
+}
