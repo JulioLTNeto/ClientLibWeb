@@ -1,2 +1,0 @@
-o	Arduino
-Caso você tenha intenções de utilizar a biblioteca com o Arduino, coloque a pasta descompactada no diretório “libraries” da pasta Arduino. Caso a IDE de seu Arduino já esteja aberta, feche-a e abra novamente. Pronto! Sua ClientLib já está pronta para uso no Arduino! 
