@@ -1,2 +1,0 @@
-o	C/C++
-Para usar a biblioteca com uma aplicação Desktop, há um processo ligeiramente diferente, mas da mesma forma, nada complicado. 
