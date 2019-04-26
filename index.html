@@ -71,6 +71,18 @@
                     $("#rodape").append(data);
                 });
             });
+			
+	$("#clientLer").click(function(){
+		$("#textoClient").css("margin-top", "0px");
+		$(".texto-aparece").css("margin-top", "2.5%");
+		$("#textoClient").css("opacity", "1");
+	});
+	
+	$(".fechar").click(function(){
+		$(".escurecer").css("margin-top", "-100%");
+		$(".texto-aparece").css("margin-top", "-100%");
+		$(".escurecer").css("opacity", "0");
+	});
 	
 });	
 
@@ -96,7 +108,7 @@
                 	<div id="menu-topo-In" class="menu-top-down">
                     		<ul>
                                 <b><li class="itemIn">HOME</li>
-                                <li class="itemIn">DOWNLOADS</li>
+                                <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="itemIn">DOWNLOADS</li></a>
                                 <li class="itemIn">DOCUMENTAÇÃO</li>
                                 <a href="html/tutorial.html"><li class="itemIn">TUTORIAIS</li></a>
                                 <li class="itemIn">DESENVOLVEDORES</li></b>
@@ -117,7 +129,7 @@
                     <div class="menu-hidden" id="mh2">&equiv;</div>
                 	<div id="menu-topo" class="menu-top-dow">
                         	<b><li class="menu_item item">HOME</li>
-                            <li class="menu_item item">DOWNLOADS</li>
+                            <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="menu_item item">DOWNLOADS</li></a>
                             <li class="menu_item item">DOCUMENTAÇÃO</li>
                             <a href="html/tutorial.html"><li class="menu_item item">TUTORIAIS</li></a>
                             <li class="menu_item item">DESENVOLVEDORES</li></b>
@@ -142,13 +154,12 @@
                         <b><div class="titulo"><label class="bg">ClientLib</label></div></b>
                         <div class="texto-left texto">
                         		<h1>-O que é?-</h1>
-                            	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label>
-                                <a class="botao botao-normal">Ler Mais...</a>
+                            	<label>ClientLib é uma biblioteca desenvolvida para facilitar a implementação de serviços em hosts que se conectem à ContextNet, um serviço online que possibilita a interconexão entre serviços, compartilhando informações separadas por tópicos, onde cada nó pode se habilitar a receber informações de um ou mais tópicos, quanto pode publicar informações de um ou mais tópicos. Sendo assim, você pode desenvolver um código que acessa...</label>
+                                <a class="botao botao-normal" id="clientLer">Ler Mais...</a>
                         </div>
                          <div class="texto-right texto">
                          		<h1>-IoT-</h1>
-                            	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label>
-                                <a class="botao botao-cor">Ler Mais...</a>
+                            	<label>A IoT pode ser definida como a comunicação máquina a máquina (M2M) via Internet, que permite que diferentes objetos, de carros a máquinas industriais ou bens de consumo como calçados e roupas, compartilhem dados e informações para concluir determinadas tarefas.<br/> A base para o funcionamento da IoT são sensores e dispositivos, que tornam a comunicação entre as “coisas” possível. Além disso, é preciso um sistema de computação para analisar os dados recebidos e gerenciar as ações de cada objeto conectado a essa rede.</label>
                         </div>
                     </center>
                 </div>
@@ -159,15 +170,15 @@
                     	</div>
                         <div class="texto">
                         	<b>Arduino</b><br/><br/>
-                            	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label><br/><br/><a href="#">Ler Mais...</a>
+                            	<label>Arduino é uma placa de prototipagem desenvolvida em 2005 com o foco de ser simples e barata. Para fazer uso dela basta programar em uma IDE especializada na própria placa, com linguagem baseada em C/C++ e feito o código, basta um cabo USB plugado na placa e no computador para que o código se transfira e o Arduino siga suas instruções.</label><br/><br/>
                         </div>
                     </center>
                 </div>
                 <div id="c">
                 	<center>
                     	<div class="texto">
-                      		<b>Arduino</b><br/><br/>
-                            	<label>Arduino[2][4][5] é uma plataforma de prototipagem eletrônica de hardware livre e de placa única,[6] projetada com um microcontrolador Atmel AVR com suporte de entrada/saída embutido, uma linguagem de programação padrão,[7] a qual tem origem em Wiring, e é essencialmente C/C++.[8] O objetivo do projeto é criar ferramentas que são acessíveis, com baixo custo, flexíveis e fáceis de se usar por principiantes e profissionais. Principalmente para aqueles que não teriam alcance aos controladores mais sofisticados e ferramentas mais complicadas.[9]</label><br/><br/><a href="#">Ler Mais...</a>
+                      		<b>C/C++</b><br/><br/>
+                            	<label>Linguagem C é uma linguagem de alto nível é uma linguagem estruturada e uma das linguagens mais populares atualmente, muito semelhante a C++, que, por sua vez, é orientada a objetos. Uma curiosidade é que a linguagem C recebeu essa nomenclatura porque foi baseada na linguagem B. Da mesma forma, por ser baseada em C, a linguagem C++ recebeu essa nomenclatura (C plus plus).</label><br/><br/>
 
                         </div>
                 		<div class="logo">
@@ -180,5 +191,14 @@
             </div>	
            <b><a href="#" class="scrollToTop">&uarr;</a></b>
     	</div>
+        <div class="escurecer" id="textoClient">
+       		<div class="fechar">&times;</div>
+            <div class="texto-aparece">
+            <h1>ClientLib</h1>
+            <label>
+                <p>ClientLib é uma biblioteca desenvolvida para facilitar a implementação de serviços em hosts que se conectem à ContextNet, um serviço online que possibilita a interconexão entre serviços, compartilhando informações separadas por tópicos, onde cada nó pode se habilitar a receber informações de um ou mais tópicos, quanto pode publicar informações de um ou mais tópicos.</p><br/><p>Sendo assim, você pode desenvolver um código que acessa a ClientLib e recebe informações dos tópicos que tiver interesse, sendo, portanto, muito aplicável a IoT. Vale ressaltar que a ContextNet pode ser baixada para que o próprio desenvolvedor execute à parte ou você pode acessar o IP fixo da ContextNet.</p>
+            </label>
+            </div>
+        </div>
 	</body>
 </html>

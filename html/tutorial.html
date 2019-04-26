@@ -20,7 +20,28 @@
 		var contador3 = 1;
 
 $(document).ready(function(){
-
+	function resetar(){
+		$("#contClk").css("background", "none");
+		$("#contClk").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#contClk").css("border-right", "1px solid rgba(0,0,0,0)");
+		$("#criarClk").css("background", "none");
+		$("#criarClk").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#criarClk").css("border-right", "1px solid rgba(0,0,0,0)");
+		$("#ardClk").css("background", "none");
+		$("#ardClk").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#ardClk").css("border-right", "1px solid rgba(0,0,0,0)");
+		$("#cClk").css("background", "none");
+		$("#cClk").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#cClk").css("border-right", "1px solid rgba(0,0,0,0)");
+		$("#winClk").css("background", "none");
+		$("#winClk").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#winClk").css("border-right", "1px solid rgba(0,0,0,0)");
+		$("#linClk").css("background", "none");
+		$("#linClk").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#linClk").css("border-right", "1px solid rgba(0,0,0,0)");
+		$("#abrir-menu").css("border-left", "1px solid rgba(0,0,0,0)");
+		$("#abrir-menu").css("border-right", "1px solid rgba(0,0,0,0)");
+	}
     //Check to see if the window is top if not then display button
     $(window).scroll(function(){
         if ($(window).scrollTop() > 150) {
@@ -31,7 +52,13 @@ $(document).ready(function(){
 			$('#cima').fadeOut();
         }
     });
-
+	
+	$.get("../txt/tutorial-instalacao.html", function (data) {
+                    $("#conteudo-lado").html(data);
+					$("#criarClk").css("background", "rgba(0,0,0,0.1)");
+					$("#criarClk").css("border-left", "1px solid #000");
+	 				$("#criarClk").css("border-right", "1px solid #000");
+     });
     //Click event to scroll to top
     $('.scrollToTop').click(function(){
         $('html, body').animate({scrollTop : 0},800);
@@ -77,48 +104,80 @@ $(document).ready(function(){
 			
 	$("#ardClk").click(function(){
 		$(function() {
-                $.get("../txt/tutorialArduino.txt", function (data) {
+                $.get("../txt/tutorial-arduino.html", function (data) {
                     $("#conteudo-lado").html(data);
+					resetar();
+					$("#ardClk").css("background", "rgba(0,0,0,0.1)");
+					$("#ardClk").css("border-left", "1px solid #000");
+	 				$("#ardClk").css("border-right", "1px solid #000");
+					$("#abrir-menu").css("border-left", "1px solid #000");
+	 				$("#abrir-menu").css("border-right", "1px solid #000");
                 });
             });
 	});
 	
 	$("#cClk").click(function(){
 		$(function() {
-                $.get("../txt/tutorialC.txt", function (data) {
+                $.get("../txt/tutorial-c.html", function (data) {
                     $("#conteudo-lado").html(data);
+					resetar();
+					$("#cClk").css("background", "rgba(0,0,0,0.1)");
+					$("#cClk").css("border-left", "1px solid #000");
+	 				$("#cClk").css("border-right", "1px solid #000");
+					$("#abrir-menu").css("border-left", "1px solid #000");
+	 				$("#abrir-menu").css("border-right", "1px solid #000");
                 });
             });
 	});
 	
 	$("#winClk").click(function(){
 		$(function() {
-                $.get("../txt/tutorialWindows.txt", function (data) {
+                $.get("../txt/tutorial-windows.html", function (data) {
                     $("#conteudo-lado").html(data);
+					resetar();
+					$("#winClk").css("background", "rgba(0,0,0,0.1)");
+					$("#winClk").css("border-left", "1px solid #000");
+	 				$("#winClk").css("border-right", "1px solid #000");
+					$("#abrir-menu").css("border-left", "1px solid #000");
+	 				$("#abrir-menu").css("border-right", "1px solid #000");
                 });
             });
 	});
 	
 	$("#linClk").click(function(){
 		$(function() {
-                $.get("../txt/tutorialLM.txt", function (data) {
+                $.get("../txt/tutorial-linux-mac.html", function (data) {
                     $("#conteudo-lado").html(data);
+					resetar();
+					$("#linClk").css("background", "rgba(0,0,0,0.1)");
+					$("#linClk").css("border-left", "1px solid #000");
+	 				$("#linClk").css("border-right", "1px solid #000");
+					$("#abrir-menu").css("border-left", "1px solid #000");
+	 				$("#abrir-menu").css("border-right", "1px solid #000");
                 });
             });
 	});
 	
 	$("#contClk").click(function(){
 		$(function() {
-                $.get("../txt/tutorialCont.txt", function (data) {
+                $.get("../txt/tutorial-context.html", function (data) {
                     $("#conteudo-lado").html(data);
+					resetar();
+					$("#contClk").css("background", "rgba(0,0,0,0.1)");
+					$("#contClk").css("border-left", "1px solid #000");
+	 				$("#contClk").css("border-right", "1px solid #000");
                 });
             });
 	});
 	
 	$("#criarClk").click(function(){
 		$(function() {
-                $.get("../txt/tutorialCriar.txt", function (data) {
+                $.get("../txt/tutorial-instalacao.html", function (data) {
                     $("#conteudo-lado").html(data);
+					resetar();
+					$("#criarClk").css("background", "rgba(0,0,0,0.1)");
+					$("#criarClk").css("border-left", "1px solid #000");
+	 				$("#criarClk").css("border-right", "1px solid #000");
                 });
             });
 	});
@@ -128,6 +187,7 @@ $(document).ready(function(){
 			contador3=0;
 			var tamanho = $(document).width();
 			if((tamanho >= 550) && (tamanho <= 610)){
+				
 				$("#ul-sub").css("height", 100);
 			}
 			else if(tamanho < 550){
@@ -168,7 +228,7 @@ $(document).ready(function(){
                 	<div id="menu-topo-In" class="menu-top-down">
                     		<ul>
                                 <b><a href="../index.html"><li class="itemIn">HOME</li></a>
-                                <li class="itemIn">DOWNLOADS</li>
+                                <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="itemIn">DOWNLOADS</li></a>
                                 <li class="itemIn">DOCUMENTAÇÃO</li>
                                 <a href="tutorial.html"><li class="itemIn">TUTORIAIS</li></a>
                                 <li class="itemIn">DESENVOLVEDORES</li></b>
@@ -189,7 +249,7 @@ $(document).ready(function(){
                     <div class="menu-hidden" id="mh2">&equiv;</div>
                 	<div id="menu-topo" class="menu-top-dow">
                         	<b><a href="../index.html"><li class="menu_item item">HOME</li></a>
-                            <li class="menu_item item">DOWNLOADS</li>
+                            <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="menu_item item">DOWNLOADS</li></a>
                             <li class="menu_item item">DOCUMENTAÇÃO</li>
                             <a href="tutorial.html"><li class="menu_item item">TUTORIAIS</li></a>
                             <li class="menu_item item">DESENVOLVEDORES</li></b>
@@ -204,7 +264,7 @@ $(document).ready(function(){
                             <li id="abrir-menu">
                                 <b>Instalação e configurações</b>
                             </li>
-                            <li id="#contClk">
+                            <li id="contClk">
                                 <b>ContextNet</b>
                             </li>
                             <li id="criarClk">

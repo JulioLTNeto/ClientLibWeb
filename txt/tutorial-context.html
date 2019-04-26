@@ -1,0 +1,29 @@
+<div id="caixa-texto">
+<h1>Instalação e Configuração</h1>
+Antes de qualquer coisa, é necessário baixar a biblioteca no site <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification">https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unificatio</a> e descompactá-la.<br/> Um fator interessante da ClientLib é que independentemente de você utilizá-la com Arduino ou para aplicações Desktop com C/C++, a biblioteca é a mesma.
+<br/>
+<h1>ContextNet</h1>
+A biblioteca da ClientLib é feita para se conectar ao ContextNet, um serviço no qual interliga vários hosts para que compartilhem informações entre si.<br/>
+Desta forma, pode ser utilizado o IP fixo no qual o ContextNet está hospedado ou, como alternativa, caso prefira, pode simplesmente executar a máquina virtual em localhost e utilizar seu serviço se conectando a ela.
+O arquivo .ova da máquina virtual deve ser importado no VirtualBox. Ao importar, a máquina vem pronta para usar a sua conexão WiFi no modo bridge, talvez seja necessário configurar para usar o cabo de acordo com sua configuração.<br/>
+<br/>
+As informações de login são:<br/>
+usuário: dev<br/>
+senha: 123456<br/>
+<br/>
+
+Para executar um Gateway (servidor) do ContextNet, na versão IoMT, basta ir, via terminal, ao diretório /home/dev/contextnet e executar o jar contextnet-iomt-1.0.jar passando os parâmetros IP, porta e implementação do DDS utilizada. De forma geral, a linha de comando pode ser:
+<br/><br/>
+$ java -jar contextnet-iomt-1.0.jar 127.0.0.1 5500 OpenSplice
+(no terminal, basta pressionar seta para cima até encontrar essa linha)
+<br/><br/>
+Nessa linha de comando, os parâmetros utilizados são:
+<br/><br/>
+•	IP: a linha usa o ip de loopback 127.0.0.1, mas o ideal seria usar o IP real da máquina para que o mecanismo de distribuição de carga do ContextNet funcione. No entanto, pode seguir utilizando sempre o IP de loopback por enquanto.<br/>
+•	Porta: a linha usa a porta 5500, geralmente usada pelos Gateways do ContextNet.<br/>
+•	Implementação do DDS: a linha usa o OpenSplice, que é a única implementação disponível (já instalada e pronta) na máquina virtual e você deve sempre utilizá-lo.
+<br/><br/>
+Depois de iniciado, o Gateway estará pronto para receber conexões no IP da máquina onde está executando e na porta especificada na linha de comando acima.<br/>
+Lembre-se de verificar o IP no qual sua máquina virtual está executando, através do comando ifconfig, que deve ser digitado no terminal. O IP verificado é o que deve ser informado como parâmetro na função ClientLibConnect.
+
+</div>
