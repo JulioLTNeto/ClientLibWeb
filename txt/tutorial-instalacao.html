@@ -15,7 +15,7 @@ Desta forma, caso queira fazer você mesmo o projeto, tenha em mãos:
 <br/>
 Faça as ligações da seguinte forma:
 <br/><br/>
-<img src="../img/logo-ci.png"/>
+<img src="../img/tutorial-ard.jpeg"/>
 <br/><br/>
 Não há problema caso você não tenha uma placa Wemos, desde que tenha um módulo ESP8266. Em ambos os casos, faz-se necessário que você possua a biblioteca ESP8266WiFi instalada e configurada na sua IDE.<br/>
 Partindo para o código, cabem algumas ressalvas:
@@ -23,44 +23,42 @@ Partindo para o código, cabem algumas ressalvas:
 •	É necessária a implementação de um método que será executado quando o ESP registrar uma informação recebida.<br/>
 •	Da mesma forma, é necessária a implementação de um método que será executado quando o ESP se conectar ao servidor do ContextNet.<br/>
 •	E por fim, é necessária a implementação de um método responsável por publicar informações no ContextNet.<br/><br/>
-    Desta forma, daremos início implementando o método NovaInformacaoRecebida:<br/>
-<div class="codigo">
-	<ul>
-    	<b>
-            <li class="impar">void NovaInformacaoRecebida(const tInformation info){</li>
-            <li class="par">Serial.printf("--------InformationData--------\n");</li>
-            <li class="impar">Serial.printf("Information class: %s\n", GetInformationTopic(info));</li>
-            
-            <li class="par">int i = 0;</li>
-            <li class="impar">const char *k;</li>
-            <li class="par">const char *v;</li>
-            <li class="impar">Serial.printf("Informations:\n");</li>
-            <li class="par">while(1){</li>
-            <li class="impar">k = GetInformationKey(info, i);</li>
-            <li class="par">v = GetInformationByIndex(info, i);</li>
-            <li class="impar">if (!k || !v){</li>
-            <li class="par">break;</li>
-            <li class="impar">}</li>
-            <li class="par">Serial.printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="impar">i++;</li>
-            <li class="par">}</li>
-            
-            <li class="impar">i = 0;</li>
-            <li class="par">Serial.printf("Properties:\n");</li>
-            <li class="impar">while(1){</li>
-            <li class="par">k = GetPropertyKey(info, i);</li>
-            <li class="impar">v = GetPropertyByIndex(info, i);</li>
-            <li class="par">if (!k || !v){</li>
-            <li class="impar">break;</li>
-            <li class="par">}</li>
-            <li class="impar">Serial.printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="par">i++;</li>
-            <li class="impar">}</li>
-            <li class="par">Serial.printf("--------------------------------\n");</li>
-            <li class="impar">}</li>
-         </b>
-    </ul>
-</div>
+    Desta forma, daremos início implementando o método NovaInformacaoRecebida:<br/><br/>
+
+<pre><code class="html">
+void NovaInformacaoRecebida(const tInformation info){
+    Serial.printf("--------InformationData--------\n");
+    Serial.printf("Information class: %s\n", GetInformationTopic(info));
+
+    int i = 0;
+    const char *k;
+    const char *v;
+    Serial.printf("Informations:\n");
+    while(1){
+        k = GetInformationKey(info, i);
+        v = GetInformationByIndex(info, i);
+        if (!k || !v){
+            break;
+        }
+        Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+        i++;
+    }
+
+    i = 0;
+    Serial.printf("Properties:\n");
+    while(1){
+        k = GetPropertyKey(info, i);
+        v = GetPropertyByIndex(info, i);
+        if (!k || !v){
+            break;
+        }
+        Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+        i++;
+    }
+    Serial.printf("--------------------------------\n");
+}
+</code>
+</pre>
 <br/>
 Vamos dissecar todo o código. Primeiramente note o parâmetro recebido: tInformation. Ele nada mais é que um tipo que representa um tópico, onde estão todas as suas informações.<br/>
 Em seguida o GetInformationTopic(info), dentro do Serial.println. Esse método retorna simplesmente o tópico que foi recebido. <br/><br/>
@@ -69,354 +67,338 @@ Após isso, há outro loop que também utiliza as variáveis k e v. Desta vez, o
 Vale lembrar que essa é uma função que será chamada pela ClientLib quando o Arduino identificar uma nova informação recebida.<br/>
 Agora vamos à próxima função: NovaPublicacao.<br/>
 
-    <div class="codigo">
-    	<ul>
-    		<li class="impar">void NovaPublicacao(const char *topic){</li>
-    		<li class="par">Serial.printf("Nova Publicacao em: \"%s\".\n", topic);</li>
-
-    		<li class="impar">tInformation info = NewInformation();</li>
-    		<li class="par">SetInformationTopic(info, topic);</li>
-    		<li class="impar">SetMainInformation(info, (char*)luminosidade);</li>
-    		<li class="par">AddInformation(info, "bairro", "mangabeira");</li>
-
-    		<li class="impar">ClientLibPublish(info);</li>
-    		<li class="par">FreeInformation(info);</li>
-			<li class="impar">}</li>
-		</ul>
-    </div>
+<pre><code class="html">
+    void NovaPublicacao(const char *topic){
+    Serial.printf("Nova Publicacao em: \"%s\".\n", topic);
+    tInformation info = NewInformation();
+    SetInformationTopic(info, topic);
+    SetMainInformation(info, (char*)luminosidade);
+    AddInformation(info, "bairro", "mangabeira");
+	ClientLibPublish(info);
+	FreeInformation(info);
+	}
+</code></pre>
+		
 <br/>
 Essa a função que implementamos para enviar uma nova informação. Note que ela recebe como parâmetro o nome do tópico no qual você está publicando. Da mesma forma, você inicializa o tInformation, através do NewInformation(). <br/>
 Feito isso, você informa para o tInformation o nome do tópico no qual você está publicando a informação através do SetInformationTopic(info,topic), onde info é a informação que você acabou de criar, e o topic é o nome do tópico onde você realizará a publicação.<br/><br/>
 Após isso você diz ao tInformation qual a informação principal que você estará publicando, através da SetMainInformation(info,(char*)luminosidade). Note que a informação precisa ser um array de bytes, logo deve ser feito um cast no int que representa a leitura do sensor na luminosidade.<br/><br/>
 Ainda é possível incluir informações adicionais na tInformation. Nesse caso, foi incluído o nome do bairro, sem esquecer, claro, de informar o nome da informação que você está adicionando e o valor que ela receberá.
 Por fim, então, é feita a publicação com a função ClientLibPublish(info) e por fim é usada a função FreeInformation(info) que libera espaço na memória.<br/><br/>
-Agora vamos à função Conectado, que será chamada após a ClientLib se conectar ao ContextNet:<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">void Conectado(int result){</li>
-            <li class="par">  if(result){</li>
-            <li class="impar">    ClientLibSubscribe("clock", NovaInformacaoRecebida);</li>
-            <li class="par">    ClientLibSubscribe("temperature", NovaInformacaoRecebida);</li>
-            <li class="impar">    ClientLibSubscribe("presence",NovaInformacaoRecebida);</li>
-            <li class="par">    ClientLibRegisterPublisher("luminosidade",NovaPublicacao);</li>
-            <li class="impar">  }else{</li>
-            <li class="par">    Serial.println("Falha na conexao");</li>
-            <li class="impar">  }</li>
-            <li class="par">}</li>
-        </ul>
-    </div>
+Agora vamos à função Conectado, que será chamada após a ClientLib se conectar ao ContextNet:<br/><br/>
+	<pre><code class="html">
+        	void Conectado(int result){
+            if(result){
+            ClientLibSubscribe("clock", NovaInformacaoRecebida);
+            ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+            ClientLibSubscribe("presence",NovaInformacaoRecebida);
+            ClientLibRegisterPublisher("luminosidade",NovaPublicacao);
+            }else{
+            Serial.println("Falha na conexao");
+            }
+            }
+        </code></pre>
    <br/>
  Primeiramente note o parâmetro result, que representa se a conexão teve ou não sucesso. Então, caso não tenha tido sucesso, é mostrada uma mensagem indicando a falha na conexão. Mas caso contrário duas funções da clientLib são utilizadas:<br/><br/>
 •	ClientLibSubscribe, que inscreve o dispositivo para receber informações de algum tópico (nesse caso receberá informações de clock, temperatura e presença). <br/>
 •	ClientLibRegisterPublisher, que informa ao ClientLib que seu dispositivo irá publicar informações de algum tópico (no caso, luminosidade).<br/><br/>
-Agora vamos explorar as funções padrões do Arduino: setup e loop.<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">void setup() {</li>
-            <li class="par">  Serial.begin(115200);</li>
-            <li class="impar">  WiFi.mode(WIFI_STA);</li>
-            <li class="par">  WiFi.begin("RESIDENCIA_LUCAS", "lucasfreitas115");</li>
-            <li class="impar">  while (WiFi.status() != WL_CONNECTED) {</li>
-            <li class="par">    delay(500);</li>
-            <li class="impar">  }  </li>
-            <li class="par">  ClientLibInit();</li>
-            <li class="impar">  ClientLibConnect("10.0.0.100", 5500, Conectado);</li>
+Agora vamos explorar as funções padrões do Arduino: setup e loop.<br/><br/>
+	
+<pre><code class="html">
+    void setup() {
+            Serial.begin(115200);
+            WiFi.mode(WIFI_STA);
+            WiFi.begin("RESIDENCIA_LUCAS", "lucasfreitas115");
+            while (WiFi.status() != WL_CONNECTED) {
+            delay(500);
+            }
+            ClientLibInit();
+            ClientLibConnect("10.0.0.100", 5500, Conectado);
               
-            <li class="par">  pinMode(SENSOR, INPUT);</li>
+            pinMode(SENSOR, INPUT);
               
-            <li class="impar"> }</li>
-        </ul>
-    </div>
+            }
+</code></pre>
+
     <br/>
 Primeiramente usamos a frequência utilizada pelo ESP para comunicação serial: 115200. Feito isso, configura o tipo de conexão como WIFI_STA e é feita a conexão WiFi usando o nome da rede e a senha. Então aguarda-se que a conexão seja estabelecida. <br/><br/>
 Quando é estabelecida a conexão com o WiFi, inicializa-se o ClientLib, através do ClientLibInit(). Feito isso, conecta a ClientLib ao ContextNet, inserindo o IP e a porta de onde ela está conectada.<br/><br/>
 Não podemos esquecer de informar que o sensor de luminosidade está em modo de entrada.<br/>
-Por fim, vamos avaliar a função de loop:<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">long lastTime = millis();</li>
-            <li class="par">bool state = false;</li>
-            <li class="impar">void loop() {</li>
-            <li class="par">  if (ClientLibIsActive()){</li>
-            <li class="impar">      ClientLibUpdate();</li>
-            <li class="par">      if(millis() > (lastTime-5000)){</li>
-            <li class="impar">        lastTime = millis();</li>
-            <li class="par">        luminosidade = analogRead(SENSOR);</li>
-            <li class="impar">        NovaPublicacao("luminosidade");</li>
-            <li class="par">     }</li>
-            <li class="impar">      state = false;</li>
-            <li class="par">  }else{</li>
-            <li class="impar">    ClientLibShutdown();</li>  
-            <li class="par">    if(!state){</li>
-            <li class="impar">      Serial.println("Desconectado");</li>
-            <li class="par">      state = true;</li>
-            <li class="impar">    }</li>
-            <li class="par">  }</li>
-            <li class="impar">}</li>
-        </ul>
-    </div>
+Por fim, vamos avaliar a função de loop:<br/><br/>
+	
+<pre><code class="html">
+    long lastTime = millis();
+    bool state = false;
+    void loop() {
+    if (ClientLibIsActive()){
+    ClientLibUpdate();
+    if(millis() > (lastTime-5000)){
+    lastTime = millis();
+    luminosidade = analogRead(SENSOR);
+    NovaPublicacao("luminosidade");
+    }
+    state = false;
+    }else{
+    ClientLibShutdown();  
+    if(!state){
+    Serial.println("Desconectado");
+    state = true;
+    }
+    }
+    }
+</code></pre>
+    
 <br/>
 A variável lastTime funciona para ter um controle de que seja feita uma nova publicação a cada 5 segundos. Dentro do void loop, primeiro é feito um teste de que o ClientLib esteja ativo. Caso esteja ativo, ele atualiza.<br/> Feita a leitura do sensor, o valor da variável luminosidade é atualizado (verifica se não há novos dados recebidos) e é feita uma nova publicação no tópico luminosidade.<br/><br/>
 Caso o ClientLib esteja inativo, ele é desligado. A variável state é utilizada apenas para ter um controle de que a mensagem “Desconectado” seja mostrada apenas uma vez no Serial monitor do Arduino.<br/><br/>
-Desta forma, o código inteiro para este projeto no Arduino é o seguinte:<br/>
+Desta forma, o código inteiro para este projeto no Arduino é o seguinte:<br/><br/>
 
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">#include < ESP8266WiFi.h ></li>
-            <li class="par">#include < clientlib.h ></li>
-            <li class="impar">#define SENSOR A0          </li>
-            <li class="par">int luminosidade;           </li>
-            <li class="impar">void NovaInformacaoRecebida(const tInformation info){</li>
-            <li class="par">    Serial.printf("--------InformationData--------\n");</li>
-            <li class="impar">    Serial.printf("Information class: %s\n", GetInformationTopic(info));      </li>     
-            <li class="par">    int i = 0;</li>
-            <li class="impar">   const char *k;</li>
-            <li class="par">    const char *v;</li>
-            <li class="impar">    Serial.printf("Informations:\n");</li>
-            <li class="par">    while(1){</li>
-            <li class="impar">        k = GetInformationKey(info, i);</li>
-            <li class="par">        v = GetInformationByIndex(info, i);</li>
-            <li class="impar">        if (!k || !v){</li>
-            <li class="par">            break;</li>
-            <li class="impar">        }</li>
-            <li class="par">        Serial.printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="impar">        i++;</li>
-            <li class="par">    }</li>
-            <li class="impar">    i = 0;</li>
-            <li class="par">   Serial.printf("Properties:\n");</li>
-            <li class="impar">    while(1){</li>
-            <li class="par">        k = GetPropertyKey(info, i);</li>
-            <li class="impar">        v = GetPropertyByIndex(info, i);</li>
-            <li class="par">        if (!k || !v){</li>
-            <li class="impar">            break;</li>
-            <li class="par">        }</li>
-            <li class="impar">        Serial.printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="par">        i++;</li>
-            <li class="impar">    }</li>
-            <li class="par">    Serial.printf("--------------------------------\n");</li>
-            <li class="impar">}</li>
-            <li class="par">void NovaPublicacao(const char *topic){</li>
-            <li class="impar">    Serial.printf("Nova Publicacao em: \"%s\".\n", topic);</li>
-            <li class="par">   tInformation info = NewInformation();</li>
-            <li class="impar">    SetInformationTopic(info, topic);</li>
-            <li class="par">    SetMainInformation(info, (char*)luminosidade);</li>
-            <li class="impar">    AddInformation(info, "bairro", "mangabeira"); </li>
-            <li class="par">    ClientLibPublish(info);</li>
-            <li class="impar">    FreeInformation(info);</li>
-            <li class="par">}</li>
-            <li class="impar">void Conectado(int result){</li>
-            <li class="par">  if(result){</li>
-            <li class="impar">    ClientLibSubscribe("clock", NovaInformacaoRecebida);</li>
-            <li class="par">    ClientLibSubscribe("temperature", NovaInformacaoRecebida);</li>
-            <li class="impar">    ClientLibSubscribe("presence",NovaInformacaoRecebida);</li>
-            <li class="par">    ClientLibRegisterPublisher("luminosidade",NovaPublicacao);</li>
-            <li class="impar">  }else{</li>
-            <li class="par">    Serial.println("Falha na conexao");</li>
-            <li class="impar">  }</li>
-            <li class="par">}</li>
-            <li class="impar">void setup() {</li>
-            <li class="par">  Serial.begin(115200);</li>
-            <li class="impar">  WiFi.mode(WIFI_STA);</li>
-            <li class="par">  WiFi.begin("RESIDENCIA_LUCAS", "lucasfreitas115");</li>
-            <li class="impar">  while (WiFi.status() != WL_CONNECTED) {</li>
-            <li class="par">    delay(500);</li>
-            <li class="impar">  }  </li>
-            <li class="par">  ClientLibInit();</li>
-            <li class="impar">  ClientLibConnect("10.0.0.100", 5500, Conectado); </li>
-            <li class="par">  pinMode(SENSOR, INPUT);             </li>
-            <li class="impar">}</li>
-            <li class="par">long lastTime = millis();</li>
-            <li class="impar">bool state = false;</li>
-            <li class="par">void loop() {</li>
-            <li class="impar"> if (ClientLibIsActive()){</li>
-            <li class="par">      ClientLibUpdate();</li>
-            <li class="impar">      if(millis() > (lastTime-5000)){</li>
-            <li class="par">        lastTime = millis();</li>
-            <li class="impar">        luminosidade = analogRead(SENSOR);</li>
-            <li class="par">        NovaPublicacao("luminosidade");</li>
-            <li class="impar">      }</li>
-            <li class="par">      state = false;</li>
-            <li class="impar">  }else{</li>
-            <li class="par">    ClientLibShutdown();  </li>
-            <li class="impar">    if(!state){</li>
-            <li class="par">      Serial.println("Desconectado");</li>
-            <li class="impar">      state = true;</li>
-            <li class="par">    }</li>
-            <li class="impar">  }</li>
-            <li class="par">}</li>
-        </ul>
-    </div>
-   	<br/>
-Agora no lado do Desktop, pressupondo que você já tenha configurado adequadamente a biblioteca ClientLib, não está muito distante do que implementamos no Arduino. As funções de NovaInformacaoRecebida, NovaPublicacao e Conectado não mudam muito em relação ao do Arduino.<br/><br/> As funções da clientLib utilizadas em ambos é a mesma, sendo um diferencial da biblioteca, ter uma portabilidade entre o microcontrolador Arduino e um programa em C.<br/><br/> Sendo assim, vamos começar pela função NovaInformacaoRecebida:<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">void NovaInformacaoRecebida(const tInformation info){</li>
-            <li class="par">printf("--------InformationData--------\n");</li>
-            <li class="impar">printf("Information class: %s\n", GetInformationTopic(info));</li>
+<pre><code class="html">
+	#include < ESP8266WiFi.h >
+            #include < clientlib.h >
+            #define SENSOR A0         
+            int luminosidade;           
+            void NovaInformacaoRecebida(const tInformation info){
+            Serial.printf("--------InformationData--------\n");
+            Serial.printf("Information class: %s\n", GetInformationTopic(info));     
+            int i = 0;
+            const char *k;
+            const char *v;
+            Serial.printf("Informations:\n");
+            while(1){
+            k = GetInformationKey(info, i);
+            v = GetInformationByIndex(info, i);
+            if (!k || !v){
+            break;
+            }
+            Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+            i++;
+            }
+            i = 0;
+            Serial.printf("Properties:\n");
+            while(1){
+            k = GetPropertyKey(info, i);
+            v = GetPropertyByIndex(info, i);
+            if (!k || !v){
+            break;
+            }
+            Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+            i++;
+            }
+            Serial.printf("--------------------------------\n");
+            }
+            void NovaPublicacao(const char *topic){
+            Serial.printf("Nova Publicacao em: \"%s\".\n", topic);
+            tInformation info = NewInformation();
+            SetInformationTopic(info, topic);
+            SetMainInformation(info, (char*)luminosidade);
+            AddInformation(info, "bairro", "mangabeira");
+            ClientLibPublish(info);
+            FreeInformation(info);
+            }
+            void Conectado(int result){
+            if(result){
+            ClientLibSubscribe("clock", NovaInformacaoRecebida);
+            ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+            ClientLibSubscribe("presence",NovaInformacaoRecebida);
+            ClientLibRegisterPublisher("luminosidade",NovaPublicacao);
+            }else{
+            Serial.println("Falha na conexao");
+            }
+            }
+            void setup() {
+            Serial.begin(115200);
+            WiFi.mode(WIFI_STA);
+            WiFi.begin("RESIDENCIA_LUCAS", "lucasfreitas115");
+            while (WiFi.status() != WL_CONNECTED) {
+            delay(500);
+            }  
+            ClientLibInit();
+            ClientLibConnect("10.0.0.100", 5500, Conectado);
+            pinMode(SENSOR, INPUT);             
+            }
+            long lastTime = millis();
+            bool state = false;
+            void loop() {
+            if (ClientLibIsActive()){
+            ClientLibUpdate();
+            if(millis() > (lastTime-5000)){
+            lastTime = millis();
+            luminosidade = analogRead(SENSOR);
+            NovaPublicacao("luminosidade");
+            }
+            state = false;
+            }else{
+            ClientLibShutdown();
+            if(!state){
+            Serial.println("Desconectado");
+            state = true;
+            }
+            }
+            }
+    </code></pre>
+<br/>
+Agora no lado do Desktop, pressupondo que você já tenha configurado adequadamente a biblioteca ClientLib, não está muito distante do que implementamos no Arduino. As funções de NovaInformacaoRecebida, NovaPublicacao e Conectado não mudam muito em relação ao do Arduino.<br/><br/> As funções da clientLib utilizadas em ambos é a mesma, sendo um diferencial da biblioteca, ter uma portabilidade entre o microcontrolador Arduino e um programa em C.<br/><br/> Sendo assim, vamos começar pela função NovaInformacaoRecebida:<br/><br/>
+	
+<pre><code class="html">    
+    void NovaInformacaoRecebida(const tInformation info){
+    printf("--------InformationData--------\n");
+    printf("Information class: %s\n", GetInformationTopic(info));
+       
+    int i = 0;
+    const char *k;
+    const char *v;
+    printf("Informations:\n");
+    while(1){
+    k = GetInformationKey(info, i);
+    v = GetInformationByIndex(info, i);
+    if (!k || !v){
+    break;
+    }
+    printf("\t\"%s\" = \"%s\"\n", k, v);
+    i++;
+    }
         
-            <li class="par">int i = 0;</li>
-            <li class="impar">const char *k;</li>
-            <li class="par">const char *v;</li>
-            <li class="impar">printf("Informations:\n");</li>
-            <li class="par">while(1){</li>
-            <li class="impar">    k = GetInformationKey(info, i);</li>
-            <li class="par">    v = GetInformationByIndex(info, i);</li>
-            <li class="impar">    if (!k || !v){</li>
-            <li class="par">        break;</li>
-            <li class="impar">    }</li>
-            <li class="par">    printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="impar">    i++;</li>
-            <li class="par">}</li>
-        
-            <li class="impar">i = 0;</li>
-            <li class="par">printf("Properties:\n");</li>
-            <li class="impar">while(1){</li>
-            <li class="par">    k = GetPropertyKey(info, i);</li>
-            <li class="impar">    v = GetPropertyByIndex(info, i);</li>
-            <li class="par">    if (!k || !v){</li>
-            <li class="impar">        break;</li>
-            <li class="par">    }</li>
-            <li class="impar">    printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="par">    i++;</li>
-            <li class="impar">}</li>
-           	<li class="par"> printf("--------------------------------\n");</li>
-        	<li class="impar">}</li>
-        </ul>
-    </div>
+    i = 0;
+    printf("Properties:\n");
+    while(1){
+    k = GetPropertyKey(info, i);
+    v = GetPropertyByIndex(info, i);
+    if (!k || !v){
+    break;
+    }
+    printf("\t\"%s\" = \"%s\"\n", k, v);
+    i++;
+    }
+    printf("--------------------------------\n");
+    }
+</code></pre>
     <br/>
 Note que a única diferença entre esse código e o código da mesma função no Arduino é que ao invés do uso do Serial.println, há o uso do printf. Portanto, não há a necessidade de uma nova explanação.<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">void NovaPublicacao(const char *topic){</li>
-            <li class="par">printf("Nova Inscricao em: \"%s\".\n", topic);</li>
+	
+    <pre><code class="html"> 
+    void NovaPublicacao(const char *topic){
+        printf("Nova Inscricao em: \"%s\".\n", topic);
         
-            <li class="impar">tInformation info = NewInformation();</li>
-            <li class="par">SetInformationTopic(info, "clock");</li>
-            <li class="impar">SetMainInformation(info, "4:20");</li>
-            <li class="par">AddInformation(info, "bairro", "mangabeira");</li>
+        tInformation info = NewInformation();
+        SetInformationTopic(info, "clock");
+        SetMainInformation(info, "4:20");
+        AddInformation(info, "bairro", "mangabeira");
         
-            <li class="impar">ClientLibPublish(info);</li>
-            <li class="par">FreeInformation(info);</li>
-        	<li class="impar">}</li>
+        ClientLibPublish(info);
+        FreeInformation(info);
+        }
+</code></pre>
 
-        </ul>
-    </div>
 <br/>
 Note que aqui é enviado por padrão apenas um valor aleatório de horário, apenas para fins didáticos. Mas, assim como no Arduino, não há diferença alguma no código a não ser o printf no lugar de Serial.println. Desta forma, esse trecho de código também dispensa novas explicações.
 <br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">void Conectado(int result){</li>
-            <li class="par">    if(result){</li>
-            <li class="impar">        printf("Conectou!\n");</li>
-            
-            <li class="par">        ClientLibSubscribe("clock", NovaInformacaoRecebida);</li>
-            <li class="impar">        ClientLibSubscribe("temperature", NovaInformacaoRecebida);</li>
-            <li class="par">        ClientLibSubscribe("luminosidade", NovaInformacaoRecebida);</li>
-            <li class="impar">        ClientLibRegisterPublisher("clock", NovaPublicacao);</li>
-            <li class="par">    }else{</li>
-            <li class="impar">        printf("Falha na conexão");</li>
-            <li class="par">    }</li>
-           	<li class="impar">}</li>
-        </ul>
-    </div>
+	<pre><code class="html"> 
+    void Conectado(int result){
+        
+        printf("Conectou!\n");    
+        ClientLibSubscribe("clock", NovaInformacaoRecebida);
+        ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+        ClientLibSubscribe("luminosidade", NovaInformacaoRecebida);
+        ClientLibRegisterPublisher("clock", NovaPublicacao);
+        }else{
+            printf("Falha na conexão");
+        }
+    }
+</code></pre>
 <br/>
 Tal qual no Arduino, o sistema Desktop se inscreveu nos tópicos de clock, temperature e luminosidade, porém publica informações de clock. Assim como no Arduino, também, não há diferenças significativas além do printf no lugar do Serial.println.
 <br/><br/>
-Por fim, vamos a função main:<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">int main(){</li>
-            <li class="par">    ClientLibInit();</li>
-            <li class="impar">    ClientLibConnect("10.0.0.100", 5500, Conectado);</li>
+Por fim, vamos a função main:<br/><br/>
+	<pre><code class="html"> 
+        int main(){
+            ClientLibInit();
+            ClientLibConnect("10.0.0.100", 5500, Conectado);
             
-            <li class="par">    while (ClientLibIsActive()){</li>
-            <li class="impar">        ClientLibUpdate();</li>
-            <li class="par">    }</li>
+            while (ClientLibIsActive()){
+                ClientLibUpdate();
+            }
             
-            <li class="impar">    ClientLibShutdown();</li>
+            ClientLibShutdown();
             
-            <li class="par">    return 0;</li>
-            <li class="impar">}</li>
-
-        </ul>
-    </div>
+            return 0;
+        }
+    </code></pre>
 <br/>
 Na função main, a ClientLib é iniciada, é feita a conexão com a ContextNet, e enquanto a ClientLib está ativa, é esperado o recebimento de alguma informação em algum tópico no qual esteja assinado.<br/>
-Quando a ClientLib não estiver mais ativa, o método ClientLibShutdown é chamado. Desta forma, o código completo é como segue-se abaixo:<br/>
-	<div class="codigo">
-    	<ul>
-        	<li class="impar">#include < stdio.h ></li>
-            <li class="par">#include < stdlib.h ></li>
+Quando a ClientLib não estiver mais ativa, o método ClientLibShutdown é chamado. Desta forma, o código completo é como segue-se abaixo:<br/><br/>
+	<pre><code class="html"> 
+    #include < stdio.h >
+    #include < stdlib.h >
             
-            <li class="impar">#include "clientlib.h"</li>
+    #include "clientlib.h"
             
-            <li class="par">void NovaInformacaoRecebida(const tInformation info){</li>
-            <li class="impar">    printf("--------InformationData--------\n");</li>
-            <li class="par">    printf("Information class: %s\n", GetInformationTopic(info));</li>
+    void NovaInformacaoRecebida(const tInformation info){
+        printf("--------InformationData--------\n");
+        printf("Information class: %s\n", GetInformationTopic(info));
             
-            <li class="impar">    int i = 0;</li>
-            <li class="par">    const char *k;</li>
-            <li class="impar">    const char *v;</li>
-            <li class="par">    printf("Informations:\n");</li>
-            <li class="impar">    while(1){</li>
-            <li class="par">        k = GetInformationKey(info, i);</li>
-            <li class="impar">        v = GetInformationByIndex(info, i);</li>
-            <li class="par">        if (!k || !v){</li>
-            <li class="impar">            break;</li>
-            <li class="par">        }</li>
-            <li class="impar">        printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="par"><li class="impar">        i++;</li>
-            <li class="impar">    }</li>
+        int i = 0;
+        const char *k;
+        const char *v;
+        printf("Informations:\n");
+        while(1){
+            k = GetInformationKey(info, i);
+            v = GetInformationByIndex(info, i);
+            if (!k || !v){
+                break;
+            }
+            printf("\t\"%s\" = \"%s\"\n", k, v);
+            i++;
+        }
             
-            <li class="par">    i = 0;</li>
-            <li class="impar">    printf("Properties:\n");</li>
-            <li class="par">    while(1){</li>
-            <li class="impar">        k = GetPropertyKey(info, i);</li>
-            <li class="par">        v = GetPropertyByIndex(info, i);</li>
-            <li class="impar">        if (!k || !v){</li>
-            <li class="par">            break;</li>
-            <li class="impar">        }</li>
-            <li class="par">       printf("\t\"%s\" = \"%s\"\n", k, v);</li>
-            <li class="impar">        i++;</li>
-            <li class="par">    }</li>
-            <li class="impar">    printf("--------------------------------\n");</li>
-            <li class="par">}</li>
-            <li class="impar">void NovaPublicacao(const char *topic){</li>
-            <li class="par">    printf("Nova Inscricao em: \"%s\".\n", topic);</li>
+        i = 0;
+        printf("Properties:\n");
+        while(1){
+            k = GetPropertyKey(info, i);
+            v = GetPropertyByIndex(info, i);
+            if (!k || !v){
+                break;
+            }
+            printf("\t\"%s\" = \"%s\"\n", k, v);
+            i++;
+        }
+        printf("--------------------------------\n");
+    }
+        void NovaPublicacao(const char *topic){
+            printf("Nova Inscricao em: \"%s\".\n", topic);
+                
+            tInformation info = NewInformation();
+            SetInformationTopic(info, "clock");
+            SetMainInformation(info, "4:20");
+            AddInformation(info, "bairro", "mangabeira");
+               
+            ClientLibPublish(info);
+            FreeInformation(info);
+        }
+        void Conectado(int result){
+            if(result){
             
-           	<li class="impar">     tInformation info = NewInformation();</li>
-           	<li class="par">     SetInformationTopic(info, "clock");</li>
-            <li class="impar">    SetMainInformation(info, "4:20");</li>
-            <li class="par">    AddInformation(info, "bairro", "mangabeira");</li>
+                printf("Conectou!\n");
+                ClientLibSubscribe("clock", NovaInformacaoRecebida);
+                ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+                ClientLibSubscribe("luminosidade", NovaInformacaoRecebida);
+                ClientLibRegisterPublisher("clock", NovaPublicacao);
             
-            <li class="impar">    ClientLibPublish(info);</li>
-            <li class="par">    FreeInformation(info);</li>
-            <li class="impar">}</li>
-           	<li class="par"> void Conectado(int result){</li>
-            <li class="impar">    if(result){</li>
-            <li class="par">        printf("Conectou!\n");</li>
+            }else{
+                printf("Falha na conexão");
+            }
+        }
+        int main(){
+            ClientLibInit();
+            ClientLibConnect("10.0.0.100", 5500, Conectado);
             
-            <li class="impar">        ClientLibSubscribe("clock", NovaInformacaoRecebida);</li>
-            <li class="par">        ClientLibSubscribe("temperature", NovaInformacaoRecebida);</li>
-            <li class="impar">        ClientLibSubscribe("luminosidade", NovaInformacaoRecebida);</li>
-            <li class="par">        ClientLibRegisterPublisher("clock", NovaPublicacao);</li>
-            <li class="impar">    }else{</li>
-            <li class="par">	        printf("Falha na conexão");</li>
-            <li class="impar">    }</li>
-            <li class="par">}</li>
-            <li class="impar">int main(){</li>
-            <li class="par">    ClientLibInit();</li>
-            <li class="impar">    ClientLibConnect("10.0.0.100", 5500, Conectado);</li>
+            while (ClientLibIsActive()){
+                ClientLibUpdate();
+            }
             
-            <li class="par">    while (ClientLibIsActive()){</li>
-            <li class="impar">        ClientLibUpdate();</li>
-            <li class="par">    }</li>
+            ClientLibShutdown();
             
-            <li class="impar">    ClientLibShutdown();</li>
-            
-            <li class="par">    return 0;</li>
-            <li class="impar">}</li>
-        </ul>
-    </div>
+            return 0;
+        }
+        
 </div>

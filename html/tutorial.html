@@ -1,289 +1,701 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="UTF-8">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>ClientLib</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>ClientLib</title>
 
-		<link rel="shortcut icon" href="../img/shortcun.png" />
-		<link rel="stylesheet" type="text/css" href="../css/style_base.css" />
-        <link rel="stylesheet" type="text/css" href="../css/style-responsive.css" />
-        <link rel="stylesheet" type="text/css" href="../css/style_sub.css" />
-        <script src="js/script_base.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/jquery-1.11.0.js" integrity="sha256-zgND4db0iXaO7v4CLBIYHGoIIudWI5hRMQrPB20j0Qw=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-        <script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+	<link rel="shortcut icon" href="../img/shortcun.png" />
+	<link rel="stylesheet" type="text/css" href="../css/style_base.css" />
+	<link rel="stylesheet" type="text/css" href="../css/style-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../css/style_sub.css" />
+	<script src="js/script_base.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.js" integrity="sha256-zgND4db0iXaO7v4CLBIYHGoIIudWI5hRMQrPB20j0Qw=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+	<script>
         // JavaScript Document
-		var contador = 1;
-		var contador2 = 1;
-		var contador3 = 1;
+        var contador = 1;
+        var contador2 = 1;
+        var contador3 = 1;
 
-$(document).ready(function(){
-	function resetar(){
-		$("#contClk").css("background", "none");
-		$("#contClk").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#contClk").css("border-right", "1px solid rgba(0,0,0,0)");
-		$("#criarClk").css("background", "none");
-		$("#criarClk").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#criarClk").css("border-right", "1px solid rgba(0,0,0,0)");
-		$("#ardClk").css("background", "none");
-		$("#ardClk").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#ardClk").css("border-right", "1px solid rgba(0,0,0,0)");
-		$("#cClk").css("background", "none");
-		$("#cClk").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#cClk").css("border-right", "1px solid rgba(0,0,0,0)");
-		$("#winClk").css("background", "none");
-		$("#winClk").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#winClk").css("border-right", "1px solid rgba(0,0,0,0)");
-		$("#linClk").css("background", "none");
-		$("#linClk").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#linClk").css("border-right", "1px solid rgba(0,0,0,0)");
-		$("#abrir-menu").css("border-left", "1px solid rgba(0,0,0,0)");
-		$("#abrir-menu").css("border-right", "1px solid rgba(0,0,0,0)");
-	}
+        $(document).ready(function(){
+        	function resetar(){
+        		$("#contClk").css("background", "none");
+        		$("#contClk").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#contClk").css("border-right", "1px solid rgba(0,0,0,0)");
+        		$("#criarClk").css("background", "none");
+        		$("#criarClk").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#criarClk").css("border-right", "1px solid rgba(0,0,0,0)");
+        		$("#ardClk").css("background", "none");
+        		$("#ardClk").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#ardClk").css("border-right", "1px solid rgba(0,0,0,0)");
+        		$("#cClk").css("background", "none");
+        		$("#cClk").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#cClk").css("border-right", "1px solid rgba(0,0,0,0)");
+        		$("#winClk").css("background", "none");
+        		$("#winClk").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#winClk").css("border-right", "1px solid rgba(0,0,0,0)");
+        		$("#linClk").css("background", "none");
+        		$("#linClk").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#linClk").css("border-right", "1px solid rgba(0,0,0,0)");
+        		$("#abrir-menu").css("border-left", "1px solid rgba(0,0,0,0)");
+        		$("#abrir-menu").css("border-right", "1px solid rgba(0,0,0,0)");
+        	}
     //Check to see if the window is top if not then display button
     $(window).scroll(function(){
-        if ($(window).scrollTop() > 150) {
-            $('.scrollToTop').fadeIn();
-			$('#cima').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-			$('#cima').fadeOut();
-        }
+    	if ($(window).scrollTop() > 150) {
+    		$('.scrollToTop').fadeIn();
+    		$('#cima').fadeIn();
+    	} else {
+    		$('.scrollToTop').fadeOut();
+    		$('#cima').fadeOut();
+    	}
     });
-	
-	$.get("../txt/tutorial-instalacao.html", function (data) {
+
+	/*$.get("../txt/tutorial-instalacao.html", function (data) {
                     $("#conteudo-lado").html(data);
 					$("#criarClk").css("background", "rgba(0,0,0,0.1)");
 					$("#criarClk").css("border-left", "1px solid #000");
 	 				$("#criarClk").css("border-right", "1px solid #000");
-     });
+	 			});*/
     //Click event to scroll to top
     $('.scrollToTop').click(function(){
-        $('html, body').animate({scrollTop : 0},800);
-        return false;
+    	$('html, body').animate({scrollTop : 0},800);
+    	return false;
     });
-	
-	$('#arduinoScroll').click(function(){
-		$('html, body').animate({scrollTop : $("#arduino").offset().top},1500);	
-	});
-	
-	
-	$('#cScroll').click(function(){
-		$('html, body').animate({scrollTop : $("#c").offset().top},1500);	
-	});
-	
-	$('#mh1').click(function(){
-		if(contador == 1){
-			$("#menu-topo-In").css("display", "block");
-			contador = 0;
-		}else{
-			$("#menu-topo-In").css("display", "none");
-			contador = 1;
-			}
-	});
-	
-	$('#mh2').click(function(){
-		if(contador2 == 1){
-			$("#menu-topo").css("margin-left", "0px");
-			$("#menu-topo").css("opacity", "1");
-			contador2 = 0;
-		}else{
-			$("#menu-topo").css("margin-left", "100%");
-			$("#menu-topo").css("opacity", "0");
-			contador2 = 1;
-			}
-	});
-	
-	$(function () {
-                $.get("aa.txt", function (data) {
-                    $("#rodape").append(data);
-                });
-            });
-			
-	$("#ardClk").click(function(){
-		$(function() {
-                $.get("../txt/tutorial-arduino.html", function (data) {
-                    $("#conteudo-lado").html(data);
-					resetar();
-					$("#ardClk").css("background", "rgba(0,0,0,0.1)");
-					$("#ardClk").css("border-left", "1px solid #000");
-	 				$("#ardClk").css("border-right", "1px solid #000");
-					$("#abrir-menu").css("border-left", "1px solid #000");
-	 				$("#abrir-menu").css("border-right", "1px solid #000");
-                });
-            });
-	});
-	
-	$("#cClk").click(function(){
-		$(function() {
-                $.get("../txt/tutorial-c.html", function (data) {
-                    $("#conteudo-lado").html(data);
-					resetar();
-					$("#cClk").css("background", "rgba(0,0,0,0.1)");
-					$("#cClk").css("border-left", "1px solid #000");
-	 				$("#cClk").css("border-right", "1px solid #000");
-					$("#abrir-menu").css("border-left", "1px solid #000");
-	 				$("#abrir-menu").css("border-right", "1px solid #000");
-                });
-            });
-	});
-	
-	$("#winClk").click(function(){
-		$(function() {
-                $.get("../txt/tutorial-windows.html", function (data) {
-                    $("#conteudo-lado").html(data);
-					resetar();
-					$("#winClk").css("background", "rgba(0,0,0,0.1)");
-					$("#winClk").css("border-left", "1px solid #000");
-	 				$("#winClk").css("border-right", "1px solid #000");
-					$("#abrir-menu").css("border-left", "1px solid #000");
-	 				$("#abrir-menu").css("border-right", "1px solid #000");
-                });
-            });
-	});
-	
-	$("#linClk").click(function(){
-		$(function() {
-                $.get("../txt/tutorial-linux-mac.html", function (data) {
-                    $("#conteudo-lado").html(data);
-					resetar();
-					$("#linClk").css("background", "rgba(0,0,0,0.1)");
-					$("#linClk").css("border-left", "1px solid #000");
-	 				$("#linClk").css("border-right", "1px solid #000");
-					$("#abrir-menu").css("border-left", "1px solid #000");
-	 				$("#abrir-menu").css("border-right", "1px solid #000");
-                });
-            });
-	});
-	
-	$("#contClk").click(function(){
-		$(function() {
-                $.get("../txt/tutorial-context.html", function (data) {
-                    $("#conteudo-lado").html(data);
-					resetar();
-					$("#contClk").css("background", "rgba(0,0,0,0.1)");
-					$("#contClk").css("border-left", "1px solid #000");
-	 				$("#contClk").css("border-right", "1px solid #000");
-                });
-            });
-	});
-	
-	$("#criarClk").click(function(){
-		$(function() {
-                $.get("../txt/tutorial-instalacao.html", function (data) {
-                    $("#conteudo-lado").html(data);
-					resetar();
-					$("#criarClk").css("background", "rgba(0,0,0,0.1)");
-					$("#criarClk").css("border-left", "1px solid #000");
-	 				$("#criarClk").css("border-right", "1px solid #000");
-                });
-            });
-	});
-	
-	$("#abrir-menu").click(function(){
-		if(contador3 == 1){
-			contador3=0;
-			var tamanho = $(document).width();
-			if((tamanho >= 550) && (tamanho <= 610)){
-				
-				$("#ul-sub").css("height", 100);
-			}
-			else if(tamanho < 550){
-				$("#ul-sub").css("height", 190);
-			}
-			else{
-				$("#ul-sub").css("height", 55);
-			}
-			$("#ul-sub").css("opacity", 1);
-		}
-		else{
-			contador3=1;
-			$("#ul-sub").css("height", "0");
-			$("#ul-sub").css("opacity", 0);
-			}
-	});
+
+    $('#arduinoScroll').click(function(){
+    	$('html, body').animate({scrollTop : $("#arduino").offset().top},1500);	
+    });
+
+
+    $('#cScroll').click(function(){
+    	$('html, body').animate({scrollTop : $("#c").offset().top},1500);	
+    });
+
+    $('#mh1').click(function(){
+    	if(contador == 1){
+    		$("#menu-topo-In").css("display", "block");
+    		contador = 0;
+    	}else{
+    		$("#menu-topo-In").css("display", "none");
+    		contador = 1;
+    	}
+    });
+
+    $('#mh2').click(function(){
+    	if(contador2 == 1){
+    		$("#menu-topo").css("margin-left", "0px");
+    		$("#menu-topo").css("opacity", "1");
+    		contador2 = 0;
+    	}else{
+    		$("#menu-topo").css("margin-left", "100%");
+    		$("#menu-topo").css("opacity", "0");
+    		contador2 = 1;
+    	}
+    });
+
+
+
+    $("#ardClk").click(function(){
+    	$(function() {
+    		$.get("../txt/tutorial-arduino.html", function (data) {
+    			$("#conteudo-lado").html(data);
+    			resetar();
+    			$("#ardClk").css("background", "rgba(0,0,0,0.1)");
+    			$("#ardClk").css("border-left", "1px solid #000");
+    			$("#ardClk").css("border-right", "1px solid #000");
+    			$("#abrir-menu").css("border-left", "1px solid #000");
+    			$("#abrir-menu").css("border-right", "1px solid #000");
+    		});
+    	});
+    });
+
+    $("#cClk").click(function(){
+    	$(function() {
+    		$.get("../txt/tutorial-c.html", function (data) {
+    			$("#conteudo-lado").html(data);
+    			resetar();
+    			$("#cClk").css("background", "rgba(0,0,0,0.1)");
+    			$("#cClk").css("border-left", "1px solid #000");
+    			$("#cClk").css("border-right", "1px solid #000");
+    			$("#abrir-menu").css("border-left", "1px solid #000");
+    			$("#abrir-menu").css("border-right", "1px solid #000");
+    		});
+    	});
+    });
+
+    $("#winClk").click(function(){
+    	$(function() {
+    		$.get("../txt/tutorial-windows.html", function (data) {
+    			$("#conteudo-lado").html(data);
+    			resetar();
+    			$("#winClk").css("background", "rgba(0,0,0,0.1)");
+    			$("#winClk").css("border-left", "1px solid #000");
+    			$("#winClk").css("border-right", "1px solid #000");
+    			$("#abrir-menu").css("border-left", "1px solid #000");
+    			$("#abrir-menu").css("border-right", "1px solid #000");
+    		});
+    	});
+    });
+
+    $("#linClk").click(function(){
+    	$(function() {
+    		$.get("../txt/tutorial-linux-mac.html", function (data) {
+    			$("#conteudo-lado").html(data);
+    			resetar();
+    			$("#linClk").css("background", "rgba(0,0,0,0.1)");
+    			$("#linClk").css("border-left", "1px solid #000");
+    			$("#linClk").css("border-right", "1px solid #000");
+    			$("#abrir-menu").css("border-left", "1px solid #000");
+    			$("#abrir-menu").css("border-right", "1px solid #000");
+    		});
+    	});
+    });
+
+    $("#contClk").click(function(){
+    	$(function() {
+    		$.get("../txt/tutorial-context.html", function (data) {
+    			$("#conteudo-lado").html(data);
+    			resetar();
+    			$("#contClk").css("background", "rgba(0,0,0,0.1)");
+    			$("#contClk").css("border-left", "1px solid #000");
+    			$("#contClk").css("border-right", "1px solid #000");
+    		});
+    	});
+    });
+
+    $("#criarClk").click(function(){
+    	$(function() {
+    		$.get("../txt/tutorial-instalacao.html", function (data) {
+    			$("#conteudo-lado").html(data);
+    			resetar();
+    			$("#criarClk").css("background", "rgba(0,0,0,0.1)");
+    			$("#criarClk").css("border-left", "1px solid #000");
+    			$("#criarClk").css("border-right", "1px solid #000");
+    		});
+    	});
+    });
+
+    $("#abrir-menu").click(function(){
+    	if(contador3 == 1){
+    		contador3=0;
+    		var tamanho = $(document).width();
+    		if((tamanho >= 550) && (tamanho <= 610)){
+
+    			$("#ul-sub").css("height", 100);
+    		}
+    		else if(tamanho < 550){
+    			$("#ul-sub").css("height", 190);
+    		}
+    		else{
+    			$("#ul-sub").css("height", 55);
+    		}
+    		$("#ul-sub").css("opacity", 1);
+    	}
+    	else{
+    		contador3=1;
+    		$("#ul-sub").css("height", "0");
+    		$("#ul-sub").css("opacity", 0);
+    	}
+    });
 
 });	
 
-	
-        </script>
 
-	</head>
+</script>
 
-	<body class="body">
 
-		<div id="tudo">
-    		<div id="topoIn">
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
 
-            	<div id="juntaIn" class="center" align="center">
-                	<a href="#">
-                		<div id="logo-In">
-                    		<img src="../img/primefaces-logo.png" id="lgIn" class="img" />
-                            <img src="../img/ci-stylized-logo.png" class="logo-hidden"  />
-                		</div>
-                    </a>
-                    <div class="menu-hidden" id="mh1">&equiv;</div>
-                	<div id="menu-topo-In" class="menu-top-down">
-                    		<ul>
-                                <b><a href="../index.html"><li class="itemIn">HOME</li></a>
-                                <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="itemIn">DOWNLOADS</li></a>
-                                <li class="itemIn">DOCUMENTAÇÃO</li>
-                                <a href="tutorial.html"><li class="itemIn">TUTORIAIS</li></a>
-                                <li class="itemIn">DESENVOLVEDORES</li></b>
-                            </ul>
-                    </div>
-                    
-                </div>
-            </div>
-            <div id="cima">
+<body class="body">
 
-            	<div id="junta" class="center" align="center">
-                	<a href="#">
-                		<div id="logo">
-                    		<img src="../img/primefaces-logo.png" id="lg" class="img" />
-                            <img src="../img/ci-stylized-logo.png" class="logo-hidden"  />
-                		</div>
-                    </a>
-                    <div class="menu-hidden" id="mh2">&equiv;</div>
-                	<div id="menu-topo" class="menu-top-dow">
-                        	<b><a href="../index.html"><li class="menu_item item">HOME</li></a>
-                            <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="menu_item item">DOWNLOADS</li></a>
-                            <li class="menu_item item">DOCUMENTAÇÃO</li>
-                            <a href="tutorial.html"><li class="menu_item item">TUTORIAIS</li></a>
-                            <li class="menu_item item">DESENVOLVEDORES</li></b>
-                    </div>
-                </div>
-            </div>
-                
-            <div id="conteudo">
-            	<center>
-                    <div id="sub-menu">
-                        <ul id="ul-top">
-                            <li id="abrir-menu">
-                                <b>Instalação e configurações</b>
-                            </li>
-                            <li id="contClk">
-                                <b>ContextNet</b>
-                            </li>
-                            <li id="criarClk">
-                                <b>Criando um projeto simples</b>
-                            </li>
-                        </ul>
-                        <ul id="ul-sub">
-                            <li id="ardClk">Arduino</li>
-                            <li id="cClk">C/C++</li>
-                            <li id="winClk">Windows</li>
-                            <li id="linClk">Linux/Mac</li>
-                        </ul>
-                    </div>
-                    <div id="conteudo-lado"></div>
-               </center>
-            </div>
-            <div id="rodape">
-            </div>	
-           <b><a href="#" class="scrollToTop">&uarr;</a></b>
-    	</div>
-	</body>
+	<div id="tudo">
+		<div id="topoIn">
+
+			<div id="juntaIn" class="center" align="center">
+				<a href="#">
+					<div id="logo-In">
+						<img src="../img/primefaces-logo.png" id="lgIn" class="img" />
+						<img src="../img/ci-stylized-logo.png" class="logo-hidden"  />
+					</div>
+				</a>
+				<div class="menu-hidden" id="mh1">&equiv;</div>
+				<div id="menu-topo-In" class="menu-top-down">
+					<ul>
+						<b><a href="../index.html"><li class="itemIn">HOME</li></a>
+							<a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="itemIn">DOWNLOADS</li></a>
+							<a href="documentacao.html"><li class="itemIn">DOCUMENTAÇÃO</li></a>
+							<a href="tutorial.html"><li class="itemIn">TUTORIAIS</li></a>
+						</b>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div id="cima">
+
+				<div id="junta" class="center" align="center">
+					<a href="#">
+						<div id="logo">
+							<img src="../img/primefaces-logo.png" id="lg" class="img" />
+							<img src="../img/ci-stylized-logo.png" class="logo-hidden"  />
+						</div>
+					</a>
+					<div class="menu-hidden" id="mh2">&equiv;</div>
+					<div id="menu-topo" class="menu-top-dow">
+						<b><a href="../index.html"><li class="menu_item item">HOME</li></a>
+							<a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification"><li class="menu_item item">DOWNLOADS</li></a>
+							<a href="documentacao.html"><li class="menu_item item">DOCUMENTAÇÃO</li></a>
+							<a href="tutorial.html"><li class="menu_item item">TUTORIAIS</li></a>
+						</b>
+						</div>
+					</div>
+				</div>
+
+				<div id="conteudo">
+					<center>
+						<div id="sub-menu">
+							<ul id="ul-top">
+								<li id="abrir-menu">
+									<b>Instalação e configurações</b>
+								</li>
+								<li id="contClk">
+									<b>ContextNet</b>
+								</li>
+								<li id="criarClk">
+									<b>Criando um projeto simples</b>
+								</li>
+							</ul>
+							<ul id="ul-sub">
+								<li id="ardClk">Arduino</li>
+								<li id="cClk">C/C++</li>
+								<li id="winClk">Windows</li>
+								<li id="linClk">Linux/Mac</li>
+							</ul>
+						</div>
+						<div id="conteudo-lado">
+							<div id="caixa-texto">
+								<h1>Instalação e Configuração</h1>
+								Antes de qualquer coisa, é necessário baixar a biblioteca no site <a href="https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unification">https://github.com/gabrielsmelo/ClientLibC-Nano/tree/unificatio</a> e descompactá-la.<br/> Um fator interessante da ClientLib é que independentemente de você utilizá-la com Arduino ou para aplicações Desktop com C/C++, a biblioteca é a mesma.
+								<br/>
+								<h1>Criando um projeto simples</h1>
+								Vamos fazer um simples projeto no qual integra Arduino e Desktop. Nesse projeto vamos ter um Tópico chamado “Luminosidade” no qual ambos os lados (do Arduino e do computador) vão estar inscritos. Nesse exemplo, o Arduino ficará notificando, a cada 5 segundos, a intensidade luminosa no ambiente em que está inserido.
+								<br/>
+								Desta forma, caso queira fazer você mesmo o projeto, tenha em mãos:
+								<br/><br/>
+								•	Placa Arduino Wemos (já é integrada com um módulo ESP8266)<br/>
+								•	Uma protoboard<br/>
+								•	Um resistor de 100kΩ<br/>
+								•	Um LDR<br/>
+								•	Alguns jumpers<br/>
+								<br/>
+								Faça as ligações da seguinte forma:
+								<br/><br/>
+								<img src="../img/tutorial-ard.jpeg"/>
+								<br/><br/>
+								Não há problema caso você não tenha uma placa Wemos, desde que tenha um módulo ESP8266. Em ambos os casos, faz-se necessário que você possua a biblioteca ESP8266WiFi instalada e configurada na sua IDE.<br/>
+								Partindo para o código, cabem algumas ressalvas:
+								<br/><br/>
+								•	É necessária a implementação de um método que será executado quando o ESP registrar uma informação recebida.<br/>
+								•	Da mesma forma, é necessária a implementação de um método que será executado quando o ESP se conectar ao servidor do ContextNet.<br/>
+								•	E por fim, é necessária a implementação de um método responsável por publicar informações no ContextNet.<br/><br/>
+								Desta forma, daremos início implementando o método NovaInformacaoRecebida:<br/>
+
+								<pre><code class="html">
+									void NovaInformacaoRecebida(const tInformation info){
+									Serial.printf("--------InformationData--------\n");
+									Serial.printf("Information class: %s\n", GetInformationTopic(info));
+
+									int i = 0;
+									const char *k;
+									const char *v;
+									Serial.printf("Informations:\n");
+									while(1){
+									k = GetInformationKey(info, i);
+									v = GetInformationByIndex(info, i);
+									if (!k || !v){
+									break;
+								}
+								Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+								i++;
+							}
+
+							i = 0;
+							Serial.printf("Properties:\n");
+							while(1){
+							k = GetPropertyKey(info, i);
+							v = GetPropertyByIndex(info, i);
+							if (!k || !v){
+							break;
+						}
+						Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+						i++;
+					}
+					Serial.printf("--------------------------------\n");
+				}
+			</code>
+		</pre>
+		<br/>
+		Vamos dissecar todo o código. Primeiramente note o parâmetro recebido: tInformation. Ele nada mais é que um tipo que representa um tópico, onde estão todas as suas informações.<br/>
+		Em seguida o GetInformationTopic(info), dentro do Serial.println. Esse método retorna simplesmente o tópico que foi recebido. <br/><br/>
+		Depois disso, note que há um loop while que percorre até que não haja nada lido por GetInformationKey ou GetInformationByIndex. Isso simplesmente percorre todas as informações que existem na informação recebida, onde o GetInformationKey(info,i) é um método da ClientLib que retorna a chave, isto é, o nome de um item de informação incluída no tópico recebido. Da mesma forma, o GetInformationByIndex(info,i) recebe o valor em si do item de informação recebida. Resumindo, o loop do while vai imprimir todas as informações incluídas no tópico.<br/><br/>
+		Após isso, há outro loop que também utiliza as variáveis k e v. Desta vez, os métodos da ClientLib utilizados no loop são GetPropertyKey(info, i) e GetPropertyByIndex(info, i), e como sugere o nome da função, elas retornam as propriedades da informação recebida, onde a GetPropertyKey retorna o nome da propriedade e o GetPropertyByIndex retorna o valor da propriedade.<br/><br/>
+		Vale lembrar que essa é uma função que será chamada pela ClientLib quando o Arduino identificar uma nova informação recebida.<br/>
+		Agora vamos à próxima função: NovaPublicacao.<br/>
+
+		<pre><code class="html">
+			void NovaPublicacao(const char *topic){
+			Serial.printf("Nova Publicacao em: \"%s\".\n", topic);
+			tInformation info = NewInformation();
+			SetInformationTopic(info, topic);
+			SetMainInformation(info, (char*)luminosidade);
+			AddInformation(info, "bairro", "mangabeira");
+			ClientLibPublish(info);
+			FreeInformation(info);
+		}
+	</code></pre>
+
+	<br/>
+	Essa a função que implementamos para enviar uma nova informação. Note que ela recebe como parâmetro o nome do tópico no qual você está publicando. Da mesma forma, você inicializa o tInformation, através do NewInformation(). <br/>
+	Feito isso, você informa para o tInformation o nome do tópico no qual você está publicando a informação através do SetInformationTopic(info,topic), onde info é a informação que você acabou de criar, e o topic é o nome do tópico onde você realizará a publicação.<br/><br/>
+	Após isso você diz ao tInformation qual a informação principal que você estará publicando, através da SetMainInformation(info,(char*)luminosidade). Note que a informação precisa ser um array de bytes, logo deve ser feito um cast no int que representa a leitura do sensor na luminosidade.<br/><br/>
+	Ainda é possível incluir informações adicionais na tInformation. Nesse caso, foi incluído o nome do bairro, sem esquecer, claro, de informar o nome da informação que você está adicionando e o valor que ela receberá.
+	Por fim, então, é feita a publicação com a função ClientLibPublish(info) e por fim é usada a função FreeInformation(info) que libera espaço na memória.<br/><br/>
+	Agora vamos à função Conectado, que será chamada após a ClientLib se conectar ao ContextNet:<br/>
+	<pre><code class="html">
+		void Conectado(int result){
+		if(result){
+		ClientLibSubscribe("clock", NovaInformacaoRecebida);
+		ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+		ClientLibSubscribe("presence",NovaInformacaoRecebida);
+		ClientLibRegisterPublisher("luminosidade",NovaPublicacao);
+	}else{
+	Serial.println("Falha na conexao");
+}
+}
+</code></pre>
+<br/>
+Primeiramente note o parâmetro result, que representa se a conexão teve ou não sucesso. Então, caso não tenha tido sucesso, é mostrada uma mensagem indicando a falha na conexão. Mas caso contrário duas funções da clientLib são utilizadas:<br/><br/>
+•	ClientLibSubscribe, que inscreve o dispositivo para receber informações de algum tópico (nesse caso receberá informações de clock, temperatura e presença). <br/>
+•	ClientLibRegisterPublisher, que informa ao ClientLib que seu dispositivo irá publicar informações de algum tópico (no caso, luminosidade).<br/><br/>
+Agora vamos explorar as funções padrões do Arduino: setup e loop.<br/>
+
+<pre><code class="html">
+	void setup() {
+	Serial.begin(115200);
+	WiFi.mode(WIFI_STA);
+	WiFi.begin("RESIDENCIA_LUCAS", "lucasfreitas115");
+	while (WiFi.status() != WL_CONNECTED) {
+	delay(500);
+}
+ClientLibInit();
+ClientLibConnect("10.0.0.100", 5500, Conectado);
+
+pinMode(SENSOR, INPUT);
+
+}
+</code></pre>
+
+<br/>
+Primeiramente usamos a frequência utilizada pelo ESP para comunicação serial: 115200. Feito isso, configura o tipo de conexão como WIFI_STA e é feita a conexão WiFi usando o nome da rede e a senha. Então aguarda-se que a conexão seja estabelecida. <br/><br/>
+Quando é estabelecida a conexão com o WiFi, inicializa-se o ClientLib, através do ClientLibInit(). Feito isso, conecta a ClientLib ao ContextNet, inserindo o IP e a porta de onde ela está conectada.<br/><br/>
+Não podemos esquecer de informar que o sensor de luminosidade está em modo de entrada.<br/>
+Por fim, vamos avaliar a função de loop:<br/>
+
+<pre><code class="html">
+	long lastTime = millis();
+	bool state = false;
+	void loop() {
+	if (ClientLibIsActive()){
+	ClientLibUpdate();
+	if(millis() > (lastTime-5000)){
+	lastTime = millis();
+	luminosidade = analogRead(SENSOR);
+	NovaPublicacao("luminosidade");
+}
+state = false;
+}else{
+ClientLibShutdown();  
+if(!state){
+Serial.println("Desconectado");
+state = true;
+}
+}
+}
+</code></pre>
+
+<br/>
+A variável lastTime funciona para ter um controle de que seja feita uma nova publicação a cada 5 segundos. Dentro do void loop, primeiro é feito um teste de que o ClientLib esteja ativo. Caso esteja ativo, ele atualiza.<br/> Feita a leitura do sensor, o valor da variável luminosidade é atualizado (verifica se não há novos dados recebidos) e é feita uma nova publicação no tópico luminosidade.<br/><br/>
+Caso o ClientLib esteja inativo, ele é desligado. A variável state é utilizada apenas para ter um controle de que a mensagem “Desconectado” seja mostrada apenas uma vez no Serial monitor do Arduino.<br/><br/>
+Desta forma, o código inteiro para este projeto no Arduino é o seguinte:<br/>
+
+<pre><code class="html">
+	#include < ESP8266WiFi.h >
+	#include < clientlib.h >
+	#define SENSOR A0         
+	int luminosidade;           
+	void NovaInformacaoRecebida(const tInformation info){
+	Serial.printf("--------InformationData--------\n");
+	Serial.printf("Information class: %s\n", GetInformationTopic(info));     
+	int i = 0;
+	const char *k;
+	const char *v;
+	Serial.printf("Informations:\n");
+	while(1){
+	k = GetInformationKey(info, i);
+	v = GetInformationByIndex(info, i);
+	if (!k || !v){
+	break;
+}
+Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+i++;
+}
+i = 0;
+Serial.printf("Properties:\n");
+while(1){
+k = GetPropertyKey(info, i);
+v = GetPropertyByIndex(info, i);
+if (!k || !v){
+break;
+}
+Serial.printf("\t\"%s\" = \"%s\"\n", k, v);
+i++;
+}
+Serial.printf("--------------------------------\n");
+}
+void NovaPublicacao(const char *topic){
+Serial.printf("Nova Publicacao em: \"%s\".\n", topic);
+tInformation info = NewInformation();
+SetInformationTopic(info, topic);
+SetMainInformation(info, (char*)luminosidade);
+AddInformation(info, "bairro", "mangabeira");
+ClientLibPublish(info);
+FreeInformation(info);
+}
+void Conectado(int result){
+if(result){
+ClientLibSubscribe("clock", NovaInformacaoRecebida);
+ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+ClientLibSubscribe("presence",NovaInformacaoRecebida);
+ClientLibRegisterPublisher("luminosidade",NovaPublicacao);
+}else{
+Serial.println("Falha na conexao");
+}
+}
+void setup() {
+Serial.begin(115200);
+WiFi.mode(WIFI_STA);
+WiFi.begin("RESIDENCIA_LUCAS", "lucasfreitas115");
+while (WiFi.status() != WL_CONNECTED) {
+delay(500);
+}  
+ClientLibInit();
+ClientLibConnect("10.0.0.100", 5500, Conectado);
+pinMode(SENSOR, INPUT);             
+}
+long lastTime = millis();
+bool state = false;
+void loop() {
+if (ClientLibIsActive()){
+ClientLibUpdate();
+if(millis() > (lastTime-5000)){
+lastTime = millis();
+luminosidade = analogRead(SENSOR);
+NovaPublicacao("luminosidade");
+}
+state = false;
+}else{
+ClientLibShutdown();
+if(!state){
+Serial.println("Desconectado");
+state = true;
+}
+}
+}
+</code></pre>
+<br/>
+Agora no lado do Desktop, pressupondo que você já tenha configurado adequadamente a biblioteca ClientLib, não está muito distante do que implementamos no Arduino. As funções de NovaInformacaoRecebida, NovaPublicacao e Conectado não mudam muito em relação ao do Arduino.<br/><br/> As funções da clientLib utilizadas em ambos é a mesma, sendo um diferencial da biblioteca, ter uma portabilidade entre o microcontrolador Arduino e um programa em C.<br/><br/> Sendo assim, vamos começar pela função NovaInformacaoRecebida:<br/>
+
+<pre><code class="html">    
+	void NovaInformacaoRecebida(const tInformation info){
+	printf("--------InformationData--------\n");
+	printf("Information class: %s\n", GetInformationTopic(info));
+
+	int i = 0;
+	const char *k;
+	const char *v;
+	printf("Informations:\n");
+	while(1){
+	k = GetInformationKey(info, i);
+	v = GetInformationByIndex(info, i);
+	if (!k || !v){
+	break;
+}
+printf("\t\"%s\" = \"%s\"\n", k, v);
+i++;
+}
+
+i = 0;
+printf("Properties:\n");
+while(1){
+k = GetPropertyKey(info, i);
+v = GetPropertyByIndex(info, i);
+if (!k || !v){
+break;
+}
+printf("\t\"%s\" = \"%s\"\n", k, v);
+i++;
+}
+printf("--------------------------------\n");
+}
+</code></pre>
+<br/>
+Note que a única diferença entre esse código e o código da mesma função no Arduino é que ao invés do uso do Serial.println, há o uso do printf. Portanto, não há a necessidade de uma nova explanação.<br/>
+
+<pre><code class="html"> 
+	void NovaPublicacao(const char *topic){
+	printf("Nova Inscricao em: \"%s\".\n", topic);
+
+	tInformation info = NewInformation();
+	SetInformationTopic(info, "clock");
+	SetMainInformation(info, "4:20");
+	AddInformation(info, "bairro", "mangabeira");
+
+	ClientLibPublish(info);
+	FreeInformation(info);
+}
+</code></pre>
+
+<br/>
+Note que aqui é enviado por padrão apenas um valor aleatório de horário, apenas para fins didáticos. Mas, assim como no Arduino, não há diferença alguma no código a não ser o printf no lugar de Serial.println. Desta forma, esse trecho de código também dispensa novas explicações.
+<br/>
+<pre><code class="html"> 
+	void Conectado(int result){
+
+	printf("Conectou!\n");    
+	ClientLibSubscribe("clock", NovaInformacaoRecebida);
+	ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+	ClientLibSubscribe("luminosidade", NovaInformacaoRecebida);
+	ClientLibRegisterPublisher("clock", NovaPublicacao);
+}else{
+printf("Falha na conexão");
+}
+}
+</code></pre>
+<br/>
+Tal qual no Arduino, o sistema Desktop se inscreveu nos tópicos de clock, temperature e luminosidade, porém publica informações de clock. Assim como no Arduino, também, não há diferenças significativas além do printf no lugar do Serial.println.
+<br/><br/>
+Por fim, vamos a função main:<br/>
+<pre><code class="html"> 
+	int main(){
+	ClientLibInit();
+	ClientLibConnect("10.0.0.100", 5500, Conectado);
+
+	while (ClientLibIsActive()){
+	ClientLibUpdate();
+}
+
+ClientLibShutdown();
+
+return 0;
+}
+</code></pre>
+<br/>
+Na função main, a ClientLib é iniciada, é feita a conexão com a ContextNet, e enquanto a ClientLib está ativa, é esperado o recebimento de alguma informação em algum tópico no qual esteja assinado.<br/>
+Quando a ClientLib não estiver mais ativa, o método ClientLibShutdown é chamado. Desta forma, o código completo é como segue-se abaixo:<br/>
+<pre><code class="html"> 
+	#include < stdio.h>
+	#include < stdlib.h>
+
+	#include "clientlib.h"
+
+	void NovaInformacaoRecebida(const tInformation info){
+	printf("--------InformationData--------\n");
+	printf("Information class: %s\n", GetInformationTopic(info));
+
+	int i = 0;
+	const char *k;
+	const char *v;
+	printf("Informations:\n");
+	while(1){
+	k = GetInformationKey(info, i);
+	v = GetInformationByIndex(info, i);
+	if (!k || !v){
+	break;
+}
+printf("\t\"%s\" = \"%s\"\n", k, v);
+i++;
+}
+
+i = 0;
+printf("Properties:\n");
+while(1){
+k = GetPropertyKey(info, i);
+v = GetPropertyByIndex(info, i);
+if (!k || !v){
+break;
+}
+printf("\t\"%s\" = \"%s\"\n", k, v);
+i++;
+}
+printf("--------------------------------\n");
+}
+void NovaPublicacao(const char *topic){
+printf("Nova Inscricao em: \"%s\".\n", topic);
+
+tInformation info = NewInformation();
+SetInformationTopic(info, "clock");
+SetMainInformation(info, "4:20");
+AddInformation(info, "bairro", "mangabeira");
+
+ClientLibPublish(info);
+FreeInformation(info);
+}
+void Conectado(int result){
+if(result){
+
+printf("Conectou!\n");
+ClientLibSubscribe("clock", NovaInformacaoRecebida);
+ClientLibSubscribe("temperature", NovaInformacaoRecebida);
+ClientLibSubscribe("luminosidade", NovaInformacaoRecebida);
+ClientLibRegisterPublisher("clock", NovaPublicacao);
+
+}else{
+printf("Falha na conexão");
+}
+}
+int main(){
+ClientLibInit();
+ClientLibConnect("10.0.0.100", 5500, Conectado);
+
+while (ClientLibIsActive()){
+ClientLibUpdate();
+}
+
+ClientLibShutdown();
+
+return 0;
+}
+
+</div>
+
+</div>
+</center>
+</div>
+<div id="rodape">
+	<center>
+		UFPB-Universidade Federal da Paraíba<br/>
+		CI-Centro de Informática<br/>
+		lincoln@lavid<br/><br/>
+		<label>Lavid</label>
+	</center>
+</div>
+<b><a href="#" class="scrollToTop">&uarr;</a></b>
+</div>
+</body>
 </html>
